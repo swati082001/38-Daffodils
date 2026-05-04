@@ -14,7 +14,7 @@ export default function Studio() {
       id="studio"
       ref={ref}
       data-testid="studio-section"
-      className="relative section-cream py-24 lg:py-36 px-5 lg:px-10 hidden md:block"
+      className="relative section-cream py-24 lg:py-36 px-5 lg:px-10"
     >
       <div className="max-w-[1400px] mx-auto">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-end mb-14">
@@ -41,14 +41,13 @@ export default function Studio() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent" />
               <div className="absolute bottom-5 left-5 text-sage font-display italic text-xl">
-                Interior {String(i + 1).padStart(2, "0")}
               </div>
             </div>
           ))}
         </div>
 
-        <p className="mt-8 text-[11px] tracking-[0.2em] uppercase text-sage/40">
-          * T &amp; C Apply
+        <p className="mt-10 text-xs italic text-forest/60 text-center lg:text-left">
+          *Images for representative purpose only.
         </p>
       </div>
     </section>

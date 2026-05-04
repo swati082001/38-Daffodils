@@ -1,128 +1,203 @@
-import { MapPin } from "lucide-react";
-import { useReveal } from "../../hooks/useReveal";
+import React from "react";
+import { motion } from "framer-motion";
+import { MapPin, TrendingUp, Route, ShoppingBag, BarChart3 } from "lucide-react";
 
-const callouts = [
-  { num: "0", unit: "Mins", label: "To Baner Metro" },
-  { num: "10", unit: "Mins", label: "To Hinjewadi IT Park" },
-  { num: "5", unit: "Mins", label: "Balewadi High Street" },
-  { num: "5+", unit: "Hubs", label: "Major IT Hubs Nearby" },
+/* DATA */
+const TOP = [
+  {
+    pos: 1,
+    title: "Reliable Demand",
+    bullets: ["IT-Driven Occupancy", "Year-Round Rental Flow"],
+  },
+  {
+    pos: 3,
+    title: "Lifestyle Advantage",
+    bullets: ["Close To Balewadi High Street", "High Livability Quotient"],
+  },
 ];
 
-const pillars = [
+const BOTTOM = [
   {
-    no: "01",
-    head: "Address",
-    title: "Strategic Location",
-    bullets: ["Prime Baner stretch", "Surrounded by key hubs", "High-visibility address"],
+    pos: 0,
+    title: "Strategic Address",
+    bullets: ["Prime Baner Stretch", "Surrounded By Key Hubs"],
   },
   {
-    no: "02",
-    head: "Demand",
-    title: "Reliable Occupancy",
-    bullets: ["IT-driven demand", "Year-round rental flow", "Zero vacancy risk"],
+    pos: 2,
+    title: "Connected Advantage",
+    bullets: [
+      "Linked Via The Mumbai-Bangalore Highway",
+      "Seamless City Movement",
+    ],
   },
   {
-    no: "03",
-    head: "Connectivity",
-    title: "Well Connected",
-    bullets: ["Mumbai-Bangalore Highway", "Baner Metro · 1 min", "Seamless city access"],
-  },
-  {
-    no: "04",
-    head: "Lifestyle",
-    title: "Premium Lifestyle",
-    bullets: ["Balewadi High Street", "Malls · Hospitals · Schools", "High livability quotient"],
-  },
-  {
-    no: "05",
-    head: "Growth",
+    pos: 4,
     title: "Growth Potential",
-    bullets: ["Appreciating locality", "Future infrastructure", "Capital upside assured"],
+    bullets: ["Appreciating Locality", "Future-Ready Infrastructure"],
   },
 ];
 
+const ICONS = [MapPin, TrendingUp, Route, ShoppingBag, BarChart3];
+
+/* MAIN */
 export default function Location() {
-  const ref = useReveal();
   return (
     <section
       id="location"
-      ref={ref}
-      data-testid="location-section"
-      className="relative py-24 lg:py-36 px-5 lg:px-10 bg-forest-deep"
+      className="relative py-16 lg:py-32 px-5 lg:px-10 overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(ellipse at center, #0e3024 0%, #061a13 90%)",
+      }}
     >
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid lg:grid-cols-12 gap-8 mb-14 lg:mb-20">
-          <div className="lg:col-span-5 reveal">
-            <div className="eyebrow mb-4">Location Advantage</div>
-            <h2 className="font-display text-sage text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
-              Pancard Club Road,
-              <br />
-              <span className="italic-accent">Baner</span>
-            </h2>
-          </div>
-          <p className="hidden md:block lg:col-span-6 lg:col-start-7 text-sage/70 text-base lg:text-lg leading-relaxed reveal reveal-delay-1">
-            A premium address in Pune's fastest-growing IT corridor — where your investment is
-            supported by relentless demand, world-class connectivity, and appreciating real estate.
-          </p>
+      <LeafPattern />
+
+      <div className="relative max-w-[1400px] mx-auto">
+        <Header />
+
+        {/* ================= DESKTOP VIEW ================= */}
+        <div className="hidden lg:block">
+          <DesktopLayout />
         </div>
 
-        {/* Numeric callouts */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-sage/10 border border-sage/10 mb-16 lg:mb-20">
-          {callouts.map((c, i) => (
-            <div
-              key={i}
-              data-testid={`location-callout-${i}`}
-              className={`reveal reveal-delay-${(i % 4) + 1} bg-forest-deep p-7 lg:p-10 flex flex-col items-start`}
-            >
-              <div className="flex items-baseline gap-2 mb-2">
-                <span className="numeric-xxl gold-ink text-5xl lg:text-7xl">{c.num}</span>
-                <span className="text-sage/65 text-sm tracking-wider font-medium">{c.unit}</span>
-              </div>
-              <div className="text-[11px] tracking-[0.22em] uppercase text-sage/55 mt-1">
-                {c.label}
-              </div>
-            </div>
-          ))}
+        {/* ================= MOBILE VIEW ================= */}
+        <div className="lg:hidden space-y-10">
+          <MobileLayout />
         </div>
 
-        {/* 5 pillars */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-px bg-sage/10 border border-sage/10">
-          {pillars.map((p, i) => (
-            <div
-              key={p.no}
-              data-testid={`location-pillar-${i}`}
-              className={`reveal reveal-delay-${(i % 5) + 1} bg-forest-deep p-6 lg:p-8 hover-lift`}
-            >
-              <div className="font-display italic text-gold/60 text-2xl mb-4">{p.no}</div>
-              <div className="text-[10px] tracking-[0.3em] uppercase text-sage/55 mb-2">
-                {p.head}
-              </div>
-              <h3 className="font-display text-xl lg:text-2xl text-sage mb-4 leading-tight">
-                {p.title}
-              </h3>
-              <ul className="hidden md:block space-y-1.5 text-sage/65 text-[13px]">
-                {p.bullets.map((b) => (
-                  <li key={b} className="flex gap-2">
-                    <span className="text-gold mt-0.5">·</span> {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 flex items-center gap-3 text-sage/65 text-sm">
-          <MapPin className="w-4 h-4 text-gold" />
-          <span className="tracking-wider">
-            Sr. 38, Opp. Ambrosia Galaxy, Behind Costa Blanca Society, Pancard Club Road, Baner
-            411045
-          </span>
-        </div>
-
-        <p className="mt-6 text-[11px] tracking-[0.2em] uppercase text-sage/40">
-          * T &amp; C Apply
+        <p className="mt-12 text-center lg:text-right text-[11px] tracking-[0.2em] uppercase text-sage/50">
+          * T & C Apply
         </p>
       </div>
     </section>
   );
 }
+
+/* ---------------- HEADER ---------------- */
+const Header = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="text-center mb-14 lg:mb-28"
+  >
+    <h2 className="font-display text-gold text-3xl sm:text-5xl lg:text-6xl uppercase">
+      Pancard Club Road, Baner
+    </h2>
+    <p className="text-sage/80 text-sm mt-3 tracking-[0.3em] uppercase">
+      The Right Investment Ground
+    </p>
+  </motion.div>
+);
+
+/* ---------------- DESKTOP (UNCHANGED STYLE) ---------------- */
+const DesktopLayout = () => (
+  <div className="relative">
+    <Row items={TOP} position="top" />
+    <CurveWithIcons />
+    <Row items={BOTTOM} position="bottom" />
+  </div>
+);
+
+/* ---------------- MOBILE (STACKED CLEAN UX) ---------------- */
+const MobileLayout = () => (
+  <div className="space-y-8">
+    <IconsRow />
+    {TOP.map((item) => (
+      <Card key={item.title} item={item} />
+    ))}
+
+    {BOTTOM.map((item) => (
+      <Card key={item.title} item={item} />
+    ))}
+  </div>
+);
+
+/* ---------------- CARD (MOBILE) ---------------- */
+const Card = ({ item }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    className="p-5 rounded-2xl border border-sage/20 bg-sage/5"
+  >
+    <h3 className="text-gold text-lg font-semibold mb-2">
+      {item.title}
+    </h3>
+    <ul className="text-sage/80 text-sm space-y-1">
+      {item.bullets.map((b) => (
+        <li key={b}>• {b}</li>
+      ))}
+    </ul>
+  </motion.div>
+);
+
+/* ---------------- ICON ROW (MOBILE) ---------------- */
+const IconsRow = () => (
+  <div className="grid grid-cols-5 gap-3 py-4">
+    {ICONS.map((Icon, i) => (
+      <div key={i} className="flex justify-center">
+        <div className="w-10 h-10 rounded-full bg-sage/10 border border-sage/30 flex items-center justify-center">
+          <Icon className="w-5 h-5 text-sage" />
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+/* ---------------- DESKTOP ROW ---------------- */
+const Row = ({ items, position }) => (
+  <div className={`grid grid-cols-5 gap-4 ${position === "top" ? "mb-10" : "mt-10"}`}>
+    {Array.from({ length: 5 }).map((_, i) => {
+      const item = items.find((x) => x.pos === i);
+      if (!item) return <div key={i} />;
+      return (
+        <div key={i} className="text-center">
+          {position === "bottom" && <Connector />}
+          <h3 className="text-gold font-semibold">{item.title}</h3>
+          <ul className="text-sage/80 text-sm mt-2">
+            {item.bullets.map((b) => (
+              <li key={b}>• {b}</li>
+            ))}
+          </ul>
+          {position === "top" && <Connector />}
+        </div>
+      );
+    })}
+  </div>
+);
+
+const Connector = () => (
+  <div className="w-px h-10 mx-auto my-3 bg-sage/30" />
+);
+
+/* ---------------- CURVE (DESKTOP ONLY) ---------------- */
+const CurveWithIcons = () => (
+  <div className="relative h-[200px]">
+    <svg viewBox="0 0 1000 200" className="absolute w-full h-full">
+      <motion.path
+        d="M 20 100 C 100 100, 100 30, 200 30 C 300 30, 300 170, 400 170 C 500 170, 500 30, 600 30 C 700 30, 700 170, 800 170 C 900 170, 900 100, 980 100"
+        stroke="#3aa07a"
+        strokeWidth="2"
+        fill="none"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        transition={{ duration: 2 }}
+      />
+    </svg>
+
+    <div className="grid grid-cols-5 h-full items-center relative">
+      {ICONS.map((Icon, i) => (
+        <div key={i} className="flex justify-center">
+          <div className="w-24 h-24 rounded-full border border-sage/30 bg-sage/10 flex items-center justify-center">
+            <Icon className="text-sage w-8 h-8" />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+/* ---------------- BACKGROUND ---------------- */
+const LeafPattern = () => (
+  <div className="absolute inset-0 opacity-[0.05] pointer-events-none" />
+);

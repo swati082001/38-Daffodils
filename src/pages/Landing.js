@@ -7,6 +7,7 @@ import Location from "../components/sections/Location";
 import Proximity from "../components/sections/Proximity";
 import Amenities from "../components/sections/Amenities";
 import FloorPlan from "../components/sections/FloorPlan";
+import Gallery from "../components/sections/Gallery";
 import Developer from "../components/sections/Developer";
 import Enquiry from "../components/sections/Enquiry";
 import Footer from "../components/sections/Footer";
@@ -27,6 +28,7 @@ export default function Landing() {
       <Amenities />
       <FloorPlan />
       <Developer />
+      <Gallery />
       <Enquiry />
       <Footer />
     </main>

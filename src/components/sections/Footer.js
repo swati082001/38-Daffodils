@@ -1,24 +1,38 @@
 import { Phone, MapPin } from "lucide-react";
-import sign from "../../assets/sign.png";
-import logo from "../../assets/logo1.png"
+import sign from "../../assets/DP WHite.png";
+import bluepearl from "../../assets/Bluepearl White.png";
+import logo from "../../assets/logo1.png";
+import rera from "../../assets/Rera.png";
+import qr from "../../assets/QR.png";
 
 export default function Footer() {
   return (
-    <footer data-testid="footer-section" className="relative bg-forest-deep border-t border-sage/10 pt-20 pb-10 px-5 lg:px-10">
+    <footer
+      data-testid="footer-section"
+      className="relative bg-forest-deep border-t border-sage/10 pt-20 pb-10 px-5 lg:px-10"
+    >
       <div className="max-w-[1400px] mx-auto">
 
+        {/* Top Grid */}
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 pb-16 border-b border-sage/10">
+
+          {/* Left */}
           <div className="lg:col-span-4">
             <img src={logo} alt="38 Daffodils" className="h-32" />
             <p className="text-sage/65 text-sm leading-relaxed mb-6">
               38 Daffodils · Pre-Leased Studio Apartments · Baner, Pune
             </p>
+
             <div className="flex items-center gap-3 mb-3 text-sage/70">
               <Phone className="w-4 h-4 text-gold" />
-              <a href="tel:+919696467802" className="text-sm hover:text-gold transition-colors">
+              <a
+                href="tel:+919696467802"
+                className="text-sm hover:text-gold transition-colors"
+              >
                 +91 96964 67802
               </a>
             </div>
+
             <div className="flex items-start gap-3 text-sage/70">
               <MapPin className="w-4 h-4 text-gold mt-0.5 flex-shrink-0" />
               <p className="text-sm leading-relaxed">
@@ -29,12 +43,18 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Quick Links */}
           <div className="lg:col-span-3">
-            <h4 className="text-[11px] tracking-[0.3em] uppercase text-gold mb-5">Quick Links</h4>
+            <h4 className="text-[11px] tracking-[0.3em] uppercase text-gold mb-5">
+              Quick Links
+            </h4>
             <ul className="space-y-3 text-sage/70 text-sm">
               {["Investment", "Studio", "Location", "Amenities", "Gallery", "Enquire"].map((l) => (
                 <li key={l}>
-                  <a href={`#${l.toLowerCase()}`} className="hover:text-gold transition-colors">
+                  <a
+                    href={`#${l.toLowerCase()}`}
+                    className="hover:text-gold transition-colors"
+                  >
                     {l}
                   </a>
                 </li>
@@ -42,49 +62,85 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Compliance */}
           <div className="lg:col-span-3">
-            <h4 className="text-[11px] tracking-[0.3em] uppercase text-gold mb-5">Compliance</h4>
-            <p className="text-sage/65 text-sm leading-relaxed">
-              MahaRERA Reg. No.
-              <br />
-              PR1260002500765
-            </p>
-            <p className="text-sage/65 text-sm leading-relaxed mt-3">
-              A Member of CREDAI Pune Metro
-            </p>
+            <h4 className="text-[11px] tracking-[0.3em] uppercase text-gold mb-5">
+              Compliance
+            </h4>
+
+            <div className="flex flex-col gap-4">
+              <p className="text-sage/65 text-sm leading-relaxed">
+                MahaRERA Reg. No.
+                <br />
+                PR1260002500765
+              </p>
+
+              {/* RERA + QR */}
+              <div className="flex items-center gap-4">
+                <img
+                  src={rera}
+                  alt="MahaRERA"
+                  className="h-16 w-auto object-contain"
+                />
+                <img
+                  src={qr}
+                  alt="QR Code"
+                  className="h-16 w-16 object-contain bg-white p-1 rounded shadow-sm"
+                />
+              </div>
+
+              <p className="text-sage/65 text-sm">
+                A Member of CREDAI Pune Metro
+              </p>
+            </div>
           </div>
 
+          {/* Connect */}
           <div className="lg:col-span-2">
-            <h4 className="text-[11px] tracking-[0.3em] uppercase text-gold mb-5">Connect</h4>
+            <h4 className="text-[11px] tracking-[0.3em] uppercase text-gold mb-5">
+              Connect
+            </h4>
           </div>
         </div>
 
-        <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="text-sage/45 text-xs leading-relaxed max-w-3xl">
-            <p>
-              <span className="text-sage/70 font-medium">Disclaimer:</span> Information on the 38
-              Daffodils real estate project is for informational purposes only and does not constitute
-              an offer or recommendation. All details, dimensions, prices, and amenities are subject
-              to change.
-            </p>
-            <p className="mt-3">© COPYRIGHT 2026 38 Daffodils. All Rights Reserved.</p>
-          </div>
-          <div className="flex items-center gap-6 text-xs">
-            <div>
-              <div className="text-sage/40 tracking-[0.2em] uppercase mb-1">Project by</div>
-              <div className="text-sage font-display italic text-lg">Bluepearl</div>
-            </div>
-            <div className="w-px h-10 bg-sage/15" />
-            <div>
-              <div className="text-sage/40 tracking-[0.2em] uppercase mb-1">Strategic Partner</div>
-              <img className="h-10 object-contain" src={sign} alt="Dweller pro" />
+        {/* Logos Section */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
 
-            </div>
+          {/* Bluepearl */}
+          <div className="flex flex-col items-center text-center">
+            <img
+              className="h-20 md:h-24 object-contain"
+              src={bluepearl}
+              alt="Blue Pearl"
+            />
+          </div>
+
+          {/* Divider */}
+          <div className="hidden md:block w-px h-16 bg-sage/20" />
+
+          {/* Dweller */}
+          <div className="flex flex-col items-center text-center">
+            <img
+              className="h-10 md:h-12 object-contain"
+              src={sign}
+              alt="Dweller pro"
+            />
           </div>
         </div>
+
+        {/* Disclaimer Full Width */}
+        <div className="mt-8 border-t border-sage/10 pt-6 text-sage/45 text-xs leading-relaxed w-full">
+          <p>
+            <span className="text-sage/70 font-medium">Disclaimer:</span> All representations are believed to be correct and envisaged by the developer/promoter. All art renderings, illustrations, photographs and pictures contained in this brochure are on artist's impression only and the same should not be construed to be the final images/views of the final project. The printed material does not constitute a contract/offer of any type between the developer/promoter and the purchaser and shall supersede all statements, documents or representations made prior to signing of such sale and purchase agreement. Terms & conditions apply.
+          </p>
+          <p className="mt-3">
+            © COPYRIGHT 2026 38 Daffodils. All Rights Reserved.
+          </p>
+        </div>
+
       </div>
 
-      {/* Get in Touch         */}
+      {/* Get in Touch */}
       <a
         href="#enquire"
         data-testid="get-in-touch-float"
@@ -94,7 +150,7 @@ export default function Footer() {
         GET IN TOUCH
       </a>
 
-      {/* WhatsApp floating button */}
+      {/* WhatsApp */}
       <a
         href="https://wa.me/919696467802"
         target="_blank"

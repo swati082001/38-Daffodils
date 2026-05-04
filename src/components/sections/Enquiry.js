@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Send, CheckCircle2 } from "lucide-react";
+import map from "../../assets/Map.png"
 
 
 export default function MapEnquiry() {
@@ -28,11 +29,11 @@ export default function MapEnquiry() {
 
   return (
     <section
-      id="contact"
+      id="enquire"
       className="relative section-forest py-24 lg:py-32 overflow-hidden grain"
     >
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10">
-        
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -41,7 +42,7 @@ export default function MapEnquiry() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-[#fed04f] text-xs lg:text-sm font-bold tracking-[0.4em] uppercase">
+          <span className="text-bg-forest/10 text-xs lg:text-sm font-bold tracking-[0.4em] uppercase">
             Get in Touch
           </span>
 
@@ -52,42 +53,18 @@ export default function MapEnquiry() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          
+
           {/* Map */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative rounded-3xl overflow-hidden border border-[#fed04f]/20 min-h-[500px]"
-          >
-            <iframe
-              title="38 Daffodils Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.5!2d73.7836!3d18.5599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBaner%2C%20Pune!5e0!3m2!1sen!2sin!4v1700000000000"
-              width="100%"
-              height="100%"
-              style={{
-                border: 0,
-                filter: "invert(0.9) hue-rotate(140deg) saturate(0.6)",
-              }}
-              allowFullScreen
-              loading="lazy"
-              className="absolute inset-0 w-full h-full"
+          <div className="relative rounded-3xl overflow-hidden min-h-[500px] lg:min-h-full">
+            <img
+              src={map}
+              alt="Location Map"
+              className="absolute inset-0 w-full h-full object-cover"
             />
 
-            {/* Location Tag */}
-            <div className="absolute top-6 left-6 bg-[#0c2a20] text-[#e2e4b0] px-5 py-3 rounded-2xl flex items-center gap-3 shadow-2xl">
-              <MapPin className="text-[#fed04f]" size={20} />
-              <div>
-                <div className="text-xs text-[#fed04f] uppercase tracking-widest font-bold">
-                  38 Daffodils
-                </div>
-                <div className="text-sm">
-                  Pancard Club Rd, Baner, Pune
-                </div>
-              </div>
-            </div>
-          </motion.div>
+            {/* optional overlay for consistency */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0c2a20]/60 via-transparent to-transparent" />
+          </div>
 
           {/* Form */}
           <motion.div
@@ -114,10 +91,10 @@ export default function MapEnquiry() {
               >
                 <CheckCircle2
                   size={56}
-                  className="text-[#fed04f] mx-auto mb-4"
+                  className="text-bg-forest/10 mx-auto mb-4"
                 />
 
-                <h4 className="font-display text-2xl text-[#e2e4b0] mb-2">
+                <h4 className="font-display text-2xl text-bg-forest/10 mb-2">
                   Thank you!
                 </h4>
 

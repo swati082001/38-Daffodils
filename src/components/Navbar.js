@@ -63,7 +63,7 @@ export default function Navbar() {
             onClick={() => setShowPopup(true)}
             className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-gold/40 text-gold text-[12px] tracking-[0.2em] uppercase hover:bg-gold hover:text-forest transition"
           >
-            Enquire Now
+            Download Brochure
           </button>
 
           {/* Mobile Toggle */}
@@ -130,7 +130,7 @@ export default function Navbar() {
             }}
             className="mt-6 w-full py-3 rounded-full bg-gold text-forest font-semibold tracking-[0.2em] uppercase text-xs"
           >
-            Enquire Now
+            Download Brochureow
           </button>
         </div>
       </div>

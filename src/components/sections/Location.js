@@ -1,203 +1,223 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { MapPin, TrendingUp, Route, ShoppingBag, BarChart3 } from "lucide-react";
+import strategicAddress from "../../assets/location/Strategic Address@2x.png";
+import reliableDemand from "../../assets/location/Reliable Demand@2x.png";
+import connectedAdvantage from "../../assets/location/Connected Advantage@2x.png";
+import lifestyleAdvantage from "../../assets/location/Lifestyle Advantage@2x.png";
+import growthPotential from "../../assets/location/Growth Potential@2x.png";
 
-/* DATA */
-const TOP = [
-  {
-    pos: 1,
-    title: "Reliable Demand",
-    bullets: ["IT-Driven Occupancy", "Year-Round Rental Flow"],
-  },
-  {
-    pos: 3,
-    title: "Lifestyle Advantage",
-    bullets: ["Close To Balewadi High Street", "High Livability Quotient"],
-  },
-];
+import movingFlower from "../../assets/background-images/Light Green Moving Flower Icon.svg";
+import locationBackground from "../../assets/background-images/city-view.png";
 
-const BOTTOM = [
+
+const locationData = [
   {
-    pos: 0,
     title: "Strategic Address",
-    bullets: ["Prime Baner Stretch", "Surrounded By Key Hubs"],
+    icon: strategicAddress,
+    details: [
+      "Prime Baner Stretch",
+      "Surrounded By Key Hubs"
+    ]
   },
   {
-    pos: 2,
+    title: "Reliable Demand",
+    icon: reliableDemand,
+    details: [
+      "IT-Driven Occupancy",
+      "Year-Round Rental Flow"
+    ]
+  },
+  {
     title: "Connected Advantage",
-    bullets: [
+    icon: connectedAdvantage,
+    details: [
       "Linked Via The Mumbai-Bangalore Highway",
-      "Seamless City Movement",
-    ],
+      "Connected By Metro"
+    ]
   },
   {
-    pos: 4,
-    title: "Growth Potential",
-    bullets: ["Appreciating Locality", "Future-Ready Infrastructure"],
+    title: "Lifestyle Advantage",
+    icon: lifestyleAdvantage,
+    details: [
+      "Close To Baner & Balewadi High Street",
+      "High Livability Quotient"
+    ]
   },
+  {
+    title: "Growth Potential",
+    icon: growthPotential,
+    details: [
+      "High Appreciating Locality",
+      "Well-Connected Infrastructure"
+    ]
+  }
 ];
 
-const ICONS = [MapPin, TrendingUp, Route, ShoppingBag, BarChart3];
-
-/* MAIN */
 export default function Location() {
   return (
     <section
       id="location"
-      className="relative py-16 lg:py-32 px-5 lg:px-10 overflow-hidden"
-      style={{
-        background:
-          "radial-gradient(ellipse at center, #0e3024 0%, #061a13 90%)",
-      }}
+      data-testid="location-section"
+      className="relative overflow-hidden"
     >
-      <LeafPattern />
+      {/* Header Section */}
+      <div className="relative bg-[#0c2a20] py-12 lg:py-16">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-sage text-sm lg:text-base tracking-wide mb-2">
+              The Right Investment Ground
+            </p>
+            <h2 className="font-display text-sage text-3xl md:text-4xl lg:text-5xl uppercase tracking-wide">
+              PANCARD CLUB ROAD, BANER
+            </h2>
+          </motion.div>
 
-      <div className="relative max-w-[1400px] mx-auto">
-        <Header />
-
-        {/* ================= DESKTOP VIEW ================= */}
-        <div className="hidden lg:block">
-          <DesktopLayout />
+          {/* Animated Flower Icon - Desktop only */}
+          <motion.img
+            src={movingFlower}
+            alt="Flower"
+            className="hidden lg:block absolute right-10 top-1/2 -translate-y-1/2 w-16 h-16 lg:w-20 lg:h-20"
+            animate={{
+              rotate: [0, 10, -10, 0],
+              scale: [1, 1.1, 0.9, 1],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
         </div>
+      </div>
 
-        {/* ================= MOBILE VIEW ================= */}
-        <div className="lg:hidden space-y-10">
-          <MobileLayout />
+      {/* Desktop Layout - 5 Equal Flex Columns */}
+      <div
+        className="hidden lg:flex relative"
+        style={{
+          backgroundImage: `url(${locationBackground})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "500px",
+        }}
+      >
+        {locationData.map((item, index) => (
+          <div
+            key={index}
+            className="flex-1 relative group cursor-pointer"
+            style={{
+              borderRight: index < 4 ? '1px solid rgba(255, 255, 255, 0.2)' : 'none'
+            }}
+          >
+            {/* Blurry Forest Green Overlay on Hover */}
+            <div className="absolute inset-0 bg-[#0c2a20]/0 group-hover:bg-[#0c2a20]/80 backdrop-blur-none group-hover:backdrop-blur-md transition-all duration-500"></div>
+
+            {/* Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="relative h-full flex flex-col items-center pt-24"
+            >
+              {/* Icon */}
+              <img
+                src={item.icon}
+                alt={item.title}
+                className="w-12 h-12 lg:w-16 lg:h-16 object-contain mb-6"
+                style={{ filter: "brightness(0) invert(1)" }}
+              />
+
+              {/* Title */}
+              <h3 className="text-sage text-2xl font-display text-center leading-tight max-w-[180px]">
+                {item.title}
+              </h3>
+
+              {/* Details */}
+              <div
+                className="
+      mt-20
+      opacity-0
+      group-hover:opacity-100
+      transition-all
+      duration-500
+      text-sage
+      text-lg
+      leading-relaxed
+      max-w-[220px]
+    "
+              >
+                {item.details.map((detail, idx) => (
+                  <p key={idx} className="mb-4 text-center">
+                    • {detail}
+                  </p>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile Layout - Horizontal Flex with Hover Effect */}
+      <div
+        className="lg:hidden relative"
+        style={{
+          backgroundImage: `url(${locationBackground})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="relative px-4 py-8">
+          {locationData.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative group cursor-pointer py-4"
+              style={{
+                borderBottom: index < locationData.length - 1 ? '1px solid rgba(255, 255, 255, 0.15)' : 'none'
+              }}
+            >
+              {/* Blurry Forest Green Overlay on Tap/Hover */}
+              <div className="absolute inset-0 -mx-4 bg-[#0c2a20]/0 group-hover:bg-[#0c2a20]/85 group-active:bg-[#0c2a20]/85 backdrop-blur-none group-hover:backdrop-blur-sm group-active:backdrop-blur-sm transition-all duration-500"></div>
+
+              {/* Horizontal Flex: Icon + Title + Details Side by Side */}
+              <div className="relative flex items-center gap-3">
+                {/* Icon */}
+                <div className="flex-shrink-0">
+                  <img
+                    src={item.icon}
+                    alt={item.title}
+                    className="w-10 h-10 object-contain"
+                    style={{ filter: 'brightness(0) invert(1)' }}
+                  />
+                </div>
+
+                {/* Title */}
+                <div className="flex-shrink-0 min-w-[120px]">
+                  <h3 className="text-sage text-sm font-display leading-tight">
+                    {item.title}
+                  </h3>
+                </div>
+
+                {/* Details - Visible on hover/tap, aligned to right */}
+                <div className="flex-1 text-sage/90 text-xs space-y-0.5 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500">
+                  {item.details.map((detail, idx) => (
+                    <p key={idx} className="leading-tight">• {detail}</p>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
-
-        <p className="mt-12 text-center lg:text-right text-[11px] tracking-[0.2em] uppercase text-sage/50">
-          * T & C Apply
-        </p>
       </div>
     </section>
   );
 }
-
-/* ---------------- HEADER ---------------- */
-const Header = () => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    className="text-center mb-14 lg:mb-28"
-  >
-    <h2 className="font-display text-gold text-3xl sm:text-5xl lg:text-6xl uppercase">
-      Pancard Club Road, Baner
-    </h2>
-    <p className="text-sage/80 text-sm mt-3 tracking-[0.3em] uppercase">
-      The Right Investment Ground
-    </p>
-  </motion.div>
-);
-
-/* ---------------- DESKTOP (UNCHANGED STYLE) ---------------- */
-const DesktopLayout = () => (
-  <div className="relative">
-    <Row items={TOP} position="top" />
-    <CurveWithIcons />
-    <Row items={BOTTOM} position="bottom" />
-  </div>
-);
-
-/* ---------------- MOBILE (STACKED CLEAN UX) ---------------- */
-const MobileLayout = () => (
-  <div className="space-y-8">
-    <IconsRow />
-    {TOP.map((item) => (
-      <Card key={item.title} item={item} />
-    ))}
-
-    {BOTTOM.map((item) => (
-      <Card key={item.title} item={item} />
-    ))}
-  </div>
-);
-
-/* ---------------- CARD (MOBILE) ---------------- */
-const Card = ({ item }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    className="p-5 rounded-2xl border border-sage/20 bg-sage/5"
-  >
-    <h3 className="text-gold text-lg font-semibold mb-2">
-      {item.title}
-    </h3>
-    <ul className="text-sage/80 text-sm space-y-1">
-      {item.bullets.map((b) => (
-        <li key={b}>• {b}</li>
-      ))}
-    </ul>
-  </motion.div>
-);
-
-/* ---------------- ICON ROW (MOBILE) ---------------- */
-const IconsRow = () => (
-  <div className="grid grid-cols-5 gap-3 py-4">
-    {ICONS.map((Icon, i) => (
-      <div key={i} className="flex justify-center">
-        <div className="w-10 h-10 rounded-full bg-sage/10 border border-sage/30 flex items-center justify-center">
-          <Icon className="w-5 h-5 text-sage" />
-        </div>
-      </div>
-    ))}
-  </div>
-);
-
-/* ---------------- DESKTOP ROW ---------------- */
-const Row = ({ items, position }) => (
-  <div className={`grid grid-cols-5 gap-4 ${position === "top" ? "mb-10" : "mt-10"}`}>
-    {Array.from({ length: 5 }).map((_, i) => {
-      const item = items.find((x) => x.pos === i);
-      if (!item) return <div key={i} />;
-      return (
-        <div key={i} className="text-center">
-          {position === "bottom" && <Connector />}
-          <h3 className="text-gold font-semibold">{item.title}</h3>
-          <ul className="text-sage/80 text-sm mt-2">
-            {item.bullets.map((b) => (
-              <li key={b}>• {b}</li>
-            ))}
-          </ul>
-          {position === "top" && <Connector />}
-        </div>
-      );
-    })}
-  </div>
-);
-
-const Connector = () => (
-  <div className="w-px h-10 mx-auto my-3 bg-sage/30" />
-);
-
-/* ---------------- CURVE (DESKTOP ONLY) ---------------- */
-const CurveWithIcons = () => (
-  <div className="relative h-[200px]">
-    <svg viewBox="0 0 1000 200" className="absolute w-full h-full">
-      <motion.path
-        d="M 20 100 C 100 100, 100 30, 200 30 C 300 30, 300 170, 400 170 C 500 170, 500 30, 600 30 C 700 30, 700 170, 800 170 C 900 170, 900 100, 980 100"
-        stroke="#3aa07a"
-        strokeWidth="2"
-        fill="none"
-        initial={{ pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        transition={{ duration: 2 }}
-      />
-    </svg>
-
-    <div className="grid grid-cols-5 h-full items-center relative">
-      {ICONS.map((Icon, i) => (
-        <div key={i} className="flex justify-center">
-          <div className="w-24 h-24 rounded-full border border-sage/30 bg-sage/10 flex items-center justify-center">
-            <Icon className="text-sage w-8 h-8" />
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-/* ---------------- BACKGROUND ---------------- */
-const LeafPattern = () => (
-  <div className="absolute inset-0 opacity-[0.05] pointer-events-none" />
-);

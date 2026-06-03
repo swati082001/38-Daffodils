@@ -1,8 +1,11 @@
+import React from "react";
 import { useReveal } from "../../hooks/useReveal";
-import banner from "../../assets/banner.jpeg";
+import bannerDesktop from "../../assets/banner-desktop.jpg";
+import bannerMobile from "../../assets/banner-mobile.jpg";
 
-export default function Hero() {
+const Hero = () => {
   const ref = useReveal();
+
   return (
     <section
       id="top"
@@ -10,20 +13,31 @@ export default function Hero() {
       data-testid="hero-section"
       className="relative w-full overflow-hidden bg-forest"
     >
-      {/* Banner — same on desktop and mobile */}
-      <div className="relative pt-20 lg:pt-24">
+      {/* Responsive Banner */}
+      <div className="relative pt-20 lg:pt-28">
         <div className="relative reveal overflow-hidden w-full">
+          {/* Desktop Banner */}
           <img
-            src={banner}
+            src={bannerDesktop}
             alt="38 Daffodils — Pre-Leased Studio Apartments · Garden of Gains"
-            className="w-full h-auto block"
+            className="hidden md:block w-full h-auto"
             loading="eager"
           />
-          {/* subtle bottom fade into page bg */}
+
+          {/* Mobile Banner */}
+          <img
+            src={bannerMobile}
+            alt="38 Daffodils — Pre-Leased Studio Apartments · Garden of Gains"
+            className="block md:hidden w-full h-auto"
+            loading="eager"
+          />
+
+          {/* Bottom Fade */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-forest" />
         </div>
       </div>
-
     </section>
   );
-}
+};
+
+export default Hero;

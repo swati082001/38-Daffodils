@@ -75,7 +75,7 @@ export default function MapEnquiry() {
             className="glass rounded-3xl p-8 lg:p-10"
           >
             <h3 className="font-display text-3xl text-[#e2e4b0] mb-2">
-              Enquire Now
+              Download Brochureow
             </h3>
 
             <p className="text-[#e2e4b0]/60 text-sm mb-8">

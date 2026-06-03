@@ -22,16 +22,26 @@ const features = [
   { icon: fasterDeliveryIcon, text: "Strong focus on timely execution and faster delivery." },
 ];
 
-function ProjectCard({ project, index }) {
-  return (
+function ProjectCard({ project }) {
+    return (
       <img
         src={project.image}
         alt={project.alt}
-        className="block w-[120%] max-w-none h-auto object-contain"
+        className="
+          block
+          w-full
+          max-w-[280px]
+          sm:max-w-[340px]
+          md:max-w-[380px]
+          lg:max-w-none
+          h-auto
+          object-contain
+          mx-auto
+        "
         draggable={false}
       />
-  );
-}
+    );
+  }
 
 export default function WhyBluepearl() {
   return (

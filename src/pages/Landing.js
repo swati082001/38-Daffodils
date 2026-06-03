@@ -21,9 +21,9 @@ export default function Landing() {
       <Navbar />
       <Hero />
       <InvestmentCase />
+      <Location />
       <WealthApproach />
       <Studio />
-      <Location />
       <Proximity />
       <Amenities />
       <FloorPlan />

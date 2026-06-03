@@ -11,6 +11,7 @@ import Gallery from "../components/sections/Gallery";
 import Developer from "../components/sections/Developer";
 import Enquiry from "../components/sections/Enquiry";
 import Footer from "../components/sections/Footer";
+import WhyBluepearl from "../components/sections/WhyBluepearl.js";
 
 export default function Landing() {
   return (
@@ -25,11 +26,12 @@ export default function Landing() {
       <WealthApproach />
       <Studio />
       <Amenities />
-      <Proximity />
       <FloorPlan />
-      <Developer />
       <Gallery />
+      <Proximity />
       <Enquiry />
+      <WhyBluepearl />
+      <Developer />
       <Footer />
     </main>
   );

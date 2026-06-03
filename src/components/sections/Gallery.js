@@ -1,130 +1,212 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+
 import galleryimage1 from "../../assets/E2.jpg";
 import galleryimage2 from "../../assets/E3.jpg";
 import galleryimage3 from "../../assets/E4.jpg";
 import galleryimage5 from "../../assets/E5.jpg";
 import galleryimage6 from "../../assets/E6.jpg";
+import I2 from "../../assets/I2.jpg";
+import I3 from "../../assets/I3.jpg";
+import I4 from "../../assets/I4.jpg";
+import I5 from "../../assets/I5.jpg";
+import greenBackground from "../../assets/background-images/green-bg.png";
 
 export const GALLERY_IMAGES = [
+  I2, I5,
   galleryimage1,
   galleryimage2,
+  I3, I4,
   galleryimage3,
   galleryimage5,
-  galleryimage6
+  galleryimage6,
 ];
 
-export default function Renders() {
+const AUTO_MS = 5000;
+
+export default function Gallery() {
   const [idx, setIdx] = useState(0);
+  const len = GALLERY_IMAGES.length;
 
-  const next = () =>
-    setIdx((p) => (p + 1) % GALLERY_IMAGES.length);
-
-  const prev = () =>
-    setIdx((p) => (p - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length);
+  const next = () => setIdx((p) => (p + 1) % len);
+  const prev = () => setIdx((p) => (p - 1 + len) % len);
 
   useEffect(() => {
-    const t = setInterval(next, 5000);
+    const t = setInterval(next, AUTO_MS);
     return () => clearInterval(t);
+    // eslint-disable-next-line
   }, []);
+
+  // Pair of images for desktop (2-up). On mobile we show only the first one of the pair.
+  const first = GALLERY_IMAGES[idx];
+  const second = GALLERY_IMAGES[(idx + 1) % len];
 
   return (
     <section
       id="gallery"
-      className="relative section-cream py-16 sm:py-20 lg:py-32 overflow-hidden"
+      data-testid="gallery-section"
+      className="relative py-20 sm:py-24 lg:py-32 overflow-hidden"
+      style={{
+        backgroundImage: `url(${greenBackground})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
-
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
+        {/* Title */}
+        <motion.h2
+          data-testid="gallery-title"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 sm:mb-12"
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="font-display text-[#e2e4b0] text-3xl sm:text-4xl md:text-5xl lg:text-5xl tracking-tight text-center leading-[1.05] max-w-[80%] md:max-w-none mb-16 lg:mb-20 mx-auto"
         >
-          <h2 className="font-display text-3xl sm:text-5xl lg:text-7xl mt-3 sm:mt-4 leading-[1.05] font-light">
-            Gallery
-          </h2>
+          GALLERY
+        </motion.h2>
 
-          {/* Controls */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={prev}
-              className="w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-[#0c2a20]/30
-                         hover:bg-[#0c2a20] hover:text-[#fed04f]
-                         flex items-center justify-center transition"
-            >
-              <ChevronLeft size={20} />
-            </button>
+        {/* Carousel */}
+        <div className="relative">
+          {/* Arrows — desktop (outside images) */}
+          <button
+            data-testid="gallery-prev"
+            onClick={prev}
+            aria-label="Previous"
+            className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 z-10
+                       w-14 h-20 rounded-full border border-[#e2e4b0]/60 text-[#e2e4b0]
+                       items-center justify-center
+                       hover:bg-[#e2e4b0]/10 transition-colors duration-300"
+          >
+            <ArrowLeft size={22} strokeWidth={1.6} />
+          </button>
 
-            <button
-              onClick={next}
-              className="w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-[#0c2a20]/30
-                         hover:bg-[#0c2a20] hover:text-[#fed04f]
-                         flex items-center justify-center transition"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
-        </motion.div>
+          <button
+            data-testid="gallery-next"
+            onClick={next}
+            aria-label="Next"
+            className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-10
+                       w-14 h-20 rounded-full border border-[#e2e4b0]/60 text-[#e2e4b0]
+                       items-center justify-center
+                       hover:bg-[#e2e4b0]/10 transition-colors duration-300"
+          >
+            <ArrowRight size={22} strokeWidth={1.6} />
+          </button>
 
-        {/* Gallery Layout */}
-        <div className="flex flex-col lg:flex-row gap-6">
+          {/* Image strip */}
+          <div className="px-0 lg:px-24">
+            {/* DESKTOP: 2 images at a time */}
+            <div className="hidden lg:grid grid-cols-2 gap-8">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`d1-${idx}`}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -30 }}
+                  transition={{ duration: 0.55, ease: "easeOut" }}
+                  className="aspect-square rounded-2xl overflow-hidden bg-[#0c2a20]/40 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]"
+                >
+                  <img
+                    src={first}
+                    alt={`Gallery ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                  />
+                </motion.div>
+              </AnimatePresence>
 
-          {/* Main Image */}
-          <div className="relative w-full lg:w-[70%] aspect-square rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0c2a20]">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={idx}
-                src={GALLERY_IMAGES[idx]}
-                alt={`Render ${idx + 1}`}
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.6 }}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </AnimatePresence>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`d2-${idx}`}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -30 }}
+                  transition={{ duration: 0.55, ease: "easeOut", delay: 0.08 }}
+                  className="aspect-square rounded-2xl overflow-hidden bg-[#0c2a20]/40 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]"
+                >
+                  <img
+                    src={second}
+                    alt={`Gallery ${((idx + 1) % len) + 1}`}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0c2a20]/70 via-transparent to-transparent pointer-events-none" />
+            {/* MOBILE / TABLET: 1 image at a time */}
+            <div className="lg:hidden relative">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`m-${idx}`}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -30 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="aspect-square rounded-2xl overflow-hidden bg-[#0c2a20]/40 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]"
+                >
+                  <img
+                    src={first}
+                    alt={`Gallery ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                  />
+                </motion.div>
+              </AnimatePresence>
 
-            {/* Counter */}
-            <div className="absolute bottom-6 left-6 text-[#e2e4b0] font-display">
-              <span className="text-5xl lg:text-7xl font-light">
-                {String(idx + 1).padStart(2, "0")}
-              </span>
-              <span className="text-[#fed04f] mx-2 text-3xl">/</span>
-              <span className="text-3xl text-[#e2e4b0]/60">
-                {String(GALLERY_IMAGES.length).padStart(2, "0")}
-              </span>
+              {/* Mobile arrows */}
+              <button
+                data-testid="gallery-prev-mobile"
+                onClick={prev}
+                aria-label="Previous"
+                className="absolute -left-2 top-1/2 -translate-y-1/2 z-10
+                           w-11 h-16 rounded-full border border-[#e2e4b0]/60 text-[#e2e4b0]
+                           flex items-center justify-center bg-[#0c2a20]/30 backdrop-blur-sm
+                           hover:bg-[#e2e4b0]/10 transition-colors"
+              >
+                <ArrowLeft size={18} strokeWidth={1.6} />
+              </button>
+
+              <button
+                data-testid="gallery-next-mobile"
+                onClick={next}
+                aria-label="Next"
+                className="absolute -right-2 top-1/2 -translate-y-1/2 z-10
+                           w-11 h-16 rounded-full border border-[#e2e4b0]/60 text-[#e2e4b0]
+                           flex items-center justify-center bg-[#0c2a20]/30 backdrop-blur-sm
+                           hover:bg-[#e2e4b0]/10 transition-colors"
+              >
+                <ArrowRight size={18} strokeWidth={1.6} />
+              </button>
             </div>
           </div>
 
-          {/* Thumbnails */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:flex lg:flex-col gap-2 sm:gap-3 lg:w-[30%] lg:max-h-[600px] lg:overflow-y-auto">
-            {GALLERY_IMAGES.map((src, i) => (
-              <button
-                key={i}
-                onClick={() => setIdx(i)}
-                className={`relative aspect-square rounded-lg overflow-hidden transition ${
-                  i === idx
-                    ? "ring-2 ring-[#fed04f]"
-                    : "opacity-60 hover:opacity-100"
-                }`}
-              >
-                <img
-                  src={src}
-                  alt={`thumb ${i}`}
-                  className="w-full h-full object-cover"
+          {/* Dots */}
+          <div className="mt-8 lg:mt-12 flex items-center justify-center gap-3">
+            {GALLERY_IMAGES.map((_, i) => {
+              const isActive = i === idx;
+              return (
+                <button
+                  key={i}
+                  data-testid={`gallery-dot-${i}`}
+                  onClick={() => setIdx(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`rounded-full transition-all duration-300 ${
+                    isActive
+                      ? "w-3 h-3 bg-[#fed04f]"
+                      : "w-3 h-3 bg-[#e2e4b0]/40 hover:bg-[#e2e4b0]/70"
+                  }`}
                 />
-              </button>
-            ))}
+              );
+            })}
           </div>
-
         </div>
+
+        {/* Footer note */}
+        <p className="mt-10 lg:mt-14 text-[11px] sm:text-xs tracking-[0.1em] text-[#e2e4b0]/70 text-right">
+          Artistic Impression | *T &amp; C&apos;s Apply
+        </p>
       </div>
     </section>
   );

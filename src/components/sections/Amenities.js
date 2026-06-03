@@ -7,6 +7,7 @@ import games from "../../assets/games.png";
 import lounge from "../../assets/lounges.png";
 import theatre from "../../assets/theatre.png";
 import gym from "../../assets/Gym.png";
+import greenBackground from "../../assets/background-images/green-bg.png";
 
 const slides = [
   { key: "theatre", title: "Multimedia Room", img: theatre },
@@ -46,11 +47,15 @@ export default function Amenities() {
   return (
     <section
       id="amenities"
-      className="relative section-forest py-20 lg:py-28 overflow-hidden"
+      className="relative py-20 lg:py-28 overflow-hidden"
       data-testid="amenities-section"
+      style={{
+        backgroundImage: `url(${greenBackground})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      <DecorativeLines />
-
       <div className="relative max-w-[1300px] mx-auto px-6 lg:px-10">
         {/* Heading */}
         <motion.h2
@@ -58,9 +63,9 @@ export default function Amenities() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="font-display text-5xl sm:text-6xl lg:text-7xl tracking-tight reveal reveal-delay-1 mb-20"
+          className="font-display text-5xl sm:text-6xl lg:text-5xl tracking-tight reveal reveal-delay-1 mb-20 text-center"
         >
-          Amenities
+          AMENITIES
         </motion.h2>
 
         <div className="grid lg:grid-cols-[1.55fr_1fr] gap-6 lg:gap-10 items-start">
@@ -108,7 +113,7 @@ export default function Amenities() {
         </div>
 
         <p className="mt-10 text-xs italic text-[#e2e4b0]/50 text-center lg:text-left">
-          *Stock Images showcased for reference purpose only.
+          *T & C's Apply.
         </p>
       </div>
     </section>
@@ -164,16 +169,4 @@ const Thumb = ({ slide, isActive, onClick }) => (
       />
     )}
   </button>
-);
-
-const DecorativeLines = () => (
-  <>
-    <svg className="absolute -left-10 top-0 h-full w-40 opacity-40" viewBox="0 0 100 600">
-      <path d="M30 0 C 80 150, 0 300, 60 450 C 30 540, 80 600, 80 600" stroke="#fed04f" strokeWidth="1.5" fill="none" />
-    </svg>
-
-    <svg className="absolute -right-10 bottom-0 h-full w-40 opacity-40" viewBox="0 0 100 600">
-      <path d="M70 0 C 20 150, 100 300, 40 450 C 70 540, 20 600, 20 600" stroke="#fed04f" strokeWidth="1.5" fill="none" />
-    </svg>
-  </>
 );

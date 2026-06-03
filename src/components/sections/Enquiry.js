@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Send, CheckCircle2 } from "lucide-react";
-import map from "../../assets/Map.png"
+import { CheckCircle2, ChevronDown } from "lucide-react";
 
+import greenBackground from "../../assets/background-images/green-bg.png";
+import enquiryImage from "../../assets/E6.jpg";
 
-export default function MapEnquiry() {
+export default function Enquiry() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -16,198 +17,179 @@ export default function MapEnquiry() {
   const onSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-
     setTimeout(() => setSubmitted(false), 4000);
-
-    setForm({
-      name: "",
-      phone: "",
-      email: "",
-      msg: "",
-    });
+    setForm({ name: "", phone: "", email: "", msg: "" });
   };
 
   return (
     <section
       id="enquire"
-      className="relative section-forest py-24 lg:py-32 overflow-hidden grain"
+      data-testid="enquiry-section"
+      className="relative py-16 sm:py-20 lg:py-28 overflow-hidden"
+      style={{
+        backgroundColor: "#0c2a20",
+        backgroundImage: `url(${greenBackground})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10">
-
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <span className="text-bg-forest/10 text-xs lg:text-sm font-bold tracking-[0.4em] uppercase">
-            Get in Touch
-          </span>
-
-          <h2 className="font-display text-[#e2e4b0] text-5xl md:text-6xl lg:text-7xl mt-4 leading-[1] font-light">
-            Visit. Enquire.{" "}
-            <span className="italic shimmer-gold">Invest.</span>
-          </h2>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-
-          {/* Map */}
-          <div className="relative rounded-3xl overflow-hidden min-h-[500px] lg:min-h-full">
+      <div className="relative max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
+          {/* Image column — hidden on mobile */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="hidden lg:block relative rounded-3xl overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.5)]"
+            data-testid="enquiry-image"
+          >
             <img
-              src={map}
-              alt="Location Map"
-              className="absolute inset-0 w-full h-full object-cover"
+              src={enquiryImage}
+              alt="38 Daffodils building exterior"
+              className="w-full h-full object-cover"
+              draggable={false}
             />
+          </motion.div>
 
-            {/* optional overlay for consistency */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0c2a20]/60 via-transparent to-transparent" />
-          </div>
-
-          {/* Form */}
+          {/* Form column */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="glass rounded-3xl p-8 lg:p-10"
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            className="relative rounded-3xl p-7 sm:p-9 lg:p-10 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)]"
+            style={{ backgroundColor: "#e2e4b0" }}
+            data-testid="enquiry-form-card"
           >
-            <h3 className="font-display text-3xl text-[#e2e4b0] mb-2">
-              Download Brochureow
-            </h3>
-
-            <p className="text-[#e2e4b0]/60 text-sm mb-8">
-              Drop your details — our investment advisor will reach out shortly.
+            <h2
+              data-testid="enquiry-title"
+              className="font-display text-[#0c2a20] text-2xl sm:text-3xl lg:text-[34px] tracking-tight font-bold"
+            >
+              ENQUIRE NOW
+            </h2>
+            <p className="text-[#0c2a20]/85 text-base sm:text-lg mt-3 mb-7 max-w-[420px] leading-relaxed">
+              Please enter the details below to get in touch with us!
             </p>
 
             {submitted ? (
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-12"
+                className="py-10 text-center"
                 data-testid="enquiry-success"
               >
                 <CheckCircle2
                   size={56}
-                  className="text-bg-forest/10 mx-auto mb-4"
+                  className="text-[#0c2a20] mx-auto mb-4"
+                  strokeWidth={1.5}
                 />
-
-                <h4 className="font-display text-2xl text-bg-forest/10 mb-2">
+                <h4 className="font-display text-2xl text-[#0c2a20] mb-2">
                   Thank you!
                 </h4>
-
-                <p className="text-[#e2e4b0]/70">
-                  We'll be in touch within 24 hours.
+                <p className="text-[#0c2a20]/75">
+                  We&apos;ll be in touch within 24 hours.
                 </p>
               </motion.div>
             ) : (
               <form
                 onSubmit={onSubmit}
-                className="space-y-5"
+                className="space-y-4 sm:space-y-5"
                 data-testid="enquiry-form"
               >
-                <Field label="Full Name" id="enquiry-name">
+                {/* Name */}
+                <input
+                  required
+                  type="text"
+                  placeholder="Name"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className="enq-input"
+                  data-testid="enquiry-input-name"
+                />
+
+                {/* Phone with country flag */}
+                <div className="enq-input flex items-center gap-2 p-0 overflow-hidden">
+                  <div className="flex items-center gap-1 pl-4 pr-2 py-3 border-r border-[#0c2a20]/30 select-none">
+                    <span className="text-xl leading-none" aria-hidden="true">
+                      🇮🇳
+                    </span>
+                    <ChevronDown
+                      size={14}
+                      className="text-[#0c2a20]"
+                      strokeWidth={2}
+                    />
+                  </div>
                   <input
                     required
-                    value={form.name}
+                    type="tel"
+                    placeholder="Phone"
+                    value={form.phone}
                     onChange={(e) =>
-                      setForm({ ...form, name: e.target.value })
+                      setForm({ ...form, phone: e.target.value })
                     }
-                    className="form-input"
-                    data-testid="enquiry-input-name"
+                    className="flex-1 bg-transparent border-0 outline-none py-3 pr-4 text-[#0c2a20] placeholder-[#0c2a20]/55 text-base"
+                    data-testid="enquiry-input-phone"
                   />
-                </Field>
-
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <Field label="Phone" id="enquiry-phone">
-                    <input
-                      required
-                      type="tel"
-                      value={form.phone}
-                      onChange={(e) =>
-                        setForm({ ...form, phone: e.target.value })
-                      }
-                      className="form-input"
-                      data-testid="enquiry-input-phone"
-                    />
-                  </Field>
-
-                  <Field label="Email" id="enquiry-email">
-                    <input
-                      required
-                      type="email"
-                      value={form.email}
-                      onChange={(e) =>
-                        setForm({ ...form, email: e.target.value })
-                      }
-                      className="form-input"
-                      data-testid="enquiry-input-email"
-                    />
-                  </Field>
                 </div>
 
-                <Field label="Message (optional)" id="enquiry-msg">
-                  <textarea
-                    rows="3"
-                    value={form.msg}
-                    onChange={(e) =>
-                      setForm({ ...form, msg: e.target.value })
-                    }
-                    className="form-input resize-none"
-                    data-testid="enquiry-input-msg"
-                  />
-                </Field>
+                {/* Email */}
+                <input
+                  required
+                  type="email"
+                  placeholder="Email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className="enq-input"
+                  data-testid="enquiry-input-email"
+                />
 
+                {/* Comments */}
+                <input
+                  type="text"
+                  placeholder="Comments"
+                  value={form.msg}
+                  onChange={(e) => setForm({ ...form, msg: e.target.value })}
+                  className="enq-input"
+                  data-testid="enquiry-input-msg"
+                />
+
+                {/* Submit */}
                 <button
                   type="submit"
-                  className="btn-gold w-full justify-center mt-2"
+                  className="w-full rounded-2xl bg-[#0c2a20] text-[#e2e4b0] py-4 mt-2 font-display tracking-wide text-lg sm:text-xl hover:bg-[#0a2018] transition-colors"
                   data-testid="enquiry-submit"
                 >
-                  Send Enquiry <Send size={16} />
+                  ENQUIRE NOW
                 </button>
               </form>
             )}
-
           </motion.div>
         </div>
       </div>
 
-      {/* Styles */}
       <style>{`
-        .form-input {
+        .enq-input {
           width: 100%;
-          background: rgba(226,228,176,0.05);
-          border: 1px solid rgba(226,228,176,0.15);
-          color: #e2e4b0;
-          padding: 12px 16px;
-          border-radius: 12px;
+          background: transparent;
+          border: 1.5px solid rgba(12, 42, 32, 0.55);
+          color: #0c2a20;
+          padding: 14px 18px;
+          border-radius: 14px;
           outline: none;
-          transition: all 0.3s;
+          transition: border-color 0.25s ease, box-shadow 0.25s ease;
           font-family: inherit;
-          font-size: 15px;
+          font-size: 16px;
         }
-
-        .form-input:focus {
-          border-color: #fed04f;
-          background: rgba(254,208,79,0.05);
+        .enq-input::placeholder {
+          color: rgba(12, 42, 32, 0.55);
         }
-
-        .form-input::placeholder {
-          color: rgba(226,228,176,0.4);
+        .enq-input:focus {
+          border-color: #0c2a20;
+          box-shadow: 0 0 0 3px rgba(12, 42, 32, 0.12);
         }
       `}</style>
     </section>
   );
 }
-
-/* Field Component */
-const Field = ({ label, id, children }) => (
-  <label htmlFor={id} className="block">
-    <span className="text-[#e2e4b0]/70 text-xs uppercase tracking-widest font-semibold mb-2 inline-block">
-      {label}
-    </span>
-    {children}
-  </label>
-);

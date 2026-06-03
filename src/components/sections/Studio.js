@@ -1,54 +1,103 @@
-import { useReveal } from "../../hooks/useReveal";
-import I3 from "../../assets/I3.jpg"
-import I4 from "../../assets/I4.jpg"
-import I5 from "../../assets/I5.jpg"
-
-const interiors = [
-  I3, I4, I5
-];
+import React from "react";
+import { motion } from "framer-motion";
+import I2 from "../../assets/I2.jpg";
+import flowerIcon from "../../assets/background-images/Green Moving Flower Icon.svg";
+import lightFlower from "../../assets/background-images/Light Green Moving Flower Icon.svg";
 
 export default function Studio() {
-  const ref = useReveal();
   return (
     <section
       id="studio"
-      ref={ref}
       data-testid="studio-section"
-      className="relative section-cream py-24 lg:py-36 px-5 lg:px-10"
+      className="relative section-cream overflow-hidden py-16 md:py-24 lg:py-28 px-5 md:px-10"
     >
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-end mb-14">
-          <div className="lg:col-span-5 reveal">
-            <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
-              Fully Furnished
-              <br />
-              <span className="italic-accent">Studios</span>
-            </h2>
-          </div>
+      {/* Center background watermark */}
+      <div
+        className="absolute pointer-events-none select-none w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] max-w-[900px] aspect-square"
+        style={{
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          zIndex: 0,
+        }}
+      >
+        <motion.img
+          src={lightFlower}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full"
+          style={{
+            opacity: 0.85,
+            filter: "brightness(0.78) saturate(1.15)",
+          }}
+        />
+      </div>
+
+      <div className="relative max-w-[1800px] mx-auto z-10">
+        {/* Header */}
+        <div className="relative flex items-start justify-center mb-4 md:mb-6">
+          <motion.h2
+            data-testid="studio-title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="font-display text-[#0c2a20] text-3xl sm:text-4xl md:text-5xl lg:text-5xl tracking-tight text-center leading-[1.05] max-w-[80%] md:max-w-none mb-8"
+          >
+            FULLY FURNISHED
+            <br className="md:hidden" />
+            <span className="md:ml-3">STUDIOS</span>
+          </motion.h2>
+
+          {/* Rotating Flower Logo */}
+          <motion.img
+            src={flowerIcon}
+            alt="Daffodils Flower"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            className="absolute top-0 right-0 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20"
+          />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-5">
-          {interiors.map((src, i) => (
-            <div
-              key={i}
-              data-testid={`studio-interior-${i}`}
-              className={`relative overflow-hidden group reveal reveal-delay-${i + 1}`}
-            >
-              <img
-                src={src}
-                alt={`Interior ${i + 1}`}
-                className="w-full h-[60vh] md:h-[70vh] object-cover transition-transform duration-[1500ms] group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent" />
-              <div className="absolute bottom-5 left-5 text-sage font-display italic text-xl">
-              </div>
-            </div>
-          ))}
+        {/* Studio Image */}
+        <div className="relative flex justify-center items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 60, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{
+              duration: 1,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="relative z-10 w-full flex justify-center"
+            style={{ perspective: 1200 }}
+          >
+            <img
+              data-testid="studio-image"
+              src={I2}
+              alt="Fully Furnished Studio Interior"
+              className="w-full h-auto object-contain cursor-pointer"
+              style={{
+                maxWidth: "min(800px, 95vw)",
+                transformOrigin: "center center",
+                willChange: "transform, filter",
+                filter: "drop-shadow(0 30px 50px rgba(12,42,32,0.18))",
+              }}
+            />
+          </motion.div>
         </div>
 
-        <p className="mt-10 text-xs italic text-forest/60 text-center lg:text-left">
-          *Images for representative purpose only.
-        </p>
+        {/* Footer Note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-right text-[#0c2a20]/70 text-[10px] sm:text-xs italic mt-4 md:mt-6"
+          data-testid="studio-disclaimer"
+        >
+          Artistic Impression | *T & C's Apply
+        </motion.p>
       </div>
     </section>
   );

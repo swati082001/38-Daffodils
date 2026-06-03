@@ -24,8 +24,8 @@ export default function Landing() {
       <Location />
       <WealthApproach />
       <Studio />
-      <Proximity />
       <Amenities />
+      <Proximity />
       <FloorPlan />
       <Developer />
       <Gallery />

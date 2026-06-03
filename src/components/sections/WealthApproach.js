@@ -1,262 +1,344 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
-import { Sprout, Coins, TrendingUp, BarChart3, ShieldCheck } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
 
-/* ---------------- Counter ---------------- */
-function Counter({ to, prefix = "", suffix = "", decimals = 0, duration = 2 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-  const [value, setValue] = useState(0);
+// Section 1
+import flowerBackgroundLeft from "../../assets/background-images/flower-left.png";
+import flowerBackgroundRight from "../../assets/background-images/flower-right.png";
+import greenMovingFlower from "../../assets/background-images/Green Moving Flower Icon.svg";
 
-  useEffect(() => {
-    if (!inView) return;
+// Section 2
+import roiBackground from "../../assets/background-images/roi-bg.png";
+import roiImage from "../../assets/background-images/ROI.png";
 
-    let startTime;
+// Section 3
+import greenBackground from "../../assets/background-images/green-bg.png";
+import lightGreenMovingFlower from "../../assets/background-images/Light Green Moving Flower Icon.svg";
 
-    const animate = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-
-      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-
-      setValue(to * eased);
-
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
-  }, [inView, to, duration]);
-
-  return (
-    <span ref={ref}>
-      {prefix}
-      {value.toFixed(decimals)}
-      {suffix}
-    </span>
-  );
-}
-
-/* ---------------- Pillar Card ---------------- */
-function PillarCard({ pillar, index }) {
-  const Icon = pillar.icon;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, delay: 0.1 + index * 0.1 }}
-      whileHover={{ y: -4 }}
-      className="group relative flex flex-col rounded-[22px] sm:rounded-[28px]
-                 p-4 sm:p-6 lg:p-9
-                 border border-[#3aa07a]/30 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(15,55,40,0.55) 0%, rgba(8,30,22,0.85) 100%)",
-        minHeight: "360px",
-      }}
-    >
-      {/* responsive min height */}
-      <style>{`
-        @media (min-width: 640px) {
-          .pillar-card {
-            min-height: 420px;
-          }
-        }
-        @media (min-width: 1024px) {
-          .pillar-card {
-            min-height: 560px;
-          }
-        }
-      `}</style>
-
-      {/* Background pattern */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='none' stroke='%23e0e4b2' stroke-width='1'%3E%3Cpath d='M40 80 Q80 40 120 80 Q80 120 40 80 Z'/%3E%3C/g%3E%3C/svg%3E\")",
-          backgroundSize: "160px",
-        }}
-      />
-
-      {/* Hover glow */}
-      <div
-        aria-hidden
-        className="absolute -inset-px rounded-[28px] opacity-0 group-hover:opacity-100 transition"
-        style={{
-          background:
-            "radial-gradient(600px circle at 50% 0%, rgba(254,208,79,0.18), transparent 60%)",
-        }}
-      />
-
-      {/* Title */}
-      <h3 className="text-gold text-lg sm:text-xl lg:text-[26px] font-semibold text-center">
-        {pillar.title}
-      </h3>
-
-      {/* Divider */}
-      <div className="mx-auto my-4 sm:my-6 w-px h-10 sm:h-14 lg:h-16 bg-sage/35" />
-
-      {/* Value */}
-      <div className="flex-1 flex flex-col items-center justify-center text-center">
-        <div className="font-display text-gold font-bold leading-tight">
-          {pillar.bigPre && (
-            <span className="text-2xl sm:text-3xl">{pillar.bigPre}</span>
-          )}
-
-          <span className="text-3xl sm:text-5xl lg:text-7xl">
-            <Counter
-              to={pillar.value}
-              decimals={pillar.decimals || 0}
-              duration={pillar.duration || 2}
-            />
-          </span>
-
-          {pillar.bigSuf && (
-            <span className="text-lg sm:text-2xl">{pillar.bigSuf}</span>
-          )}
-        </div>
-
-        {pillar.label && (
-          <p className="text-sage/85 text-xs sm:text-sm mt-3 sm:mt-4 max-w-[24ch]">
-            {pillar.label}
-          </p>
-        )}
-
-        {pillar.secondary && (
-          <div className="mt-3 sm:mt-4 font-display text-gold font-bold">
-            <span className="text-2xl sm:text-4xl">
-              {pillar.secondary.value}
-            </span>
-            <span className="text-base sm:text-xl ml-1">
-              {pillar.secondary.suf}
-            </span>
-            <p className="text-sage/85 text-xs sm:text-sm mt-2 max-w-[22ch]">
-              {pillar.secondary.label}
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* Footer */}
-      <div className="mx-auto my-3 sm:my-4 w-px h-10 sm:h-12 bg-sage/25" />
-
-      <p className="text-center text-sage/75 text-xs sm:text-sm italic">
-        {pillar.footer}
-      </p>
-
-      {/* Icon */}
-      <div className="flex justify-center mt-3 sm:mt-4 opacity-50 group-hover:opacity-90 transition">
-        <Icon
-          size={36}
-          className="sm:w-12 sm:h-12 lg:w-[56px] lg:h-[56px] text-[#2a8a66]"
-        />
-      </div>
-    </motion.div>
-  );
-}
-
-/* ---------------- Data ---------------- */
-const PILLARS = [
-  {
-    title: "Fields of Fortune",
-    icon: Sprout,
-    bigPre: "₹",
-    bigSuf: " Lakhs*",
-    value: 39.75,
-    decimals: 2,
-    label: "of investment in PRELEASED STUDIO APARTMENT",
-    footer: "Where opportunity expands into abundance.",
-  },
-  {
-    title: "Seeds of Wealth",
-    icon: Coins,
-    bigPre: "₹ ",
-    value: 18000,
-    duration: 2.4,
-    label: "Per Month rental income",
-    footer: "Your investment starts earning from the very beginning.",
-  },
-  {
-    title: "Roots of Returns",
-    icon: TrendingUp,
-    bigSuf: "%",
-    value: 15,
-    label: "Rental Escalation after First 3 Years",
-    secondary: {
-      value: "5",
-      suf: "%",
-      label: "Rental Escalation every year 4th year onwards",
-    },
-    footer: "Built on a structure that strengthens over time.",
-  },
-  {
-    title: "Money Grows On Trees",
-    icon: BarChart3,
-    bigPre: "Avg ROI ",
-    bigSuf: "%",
-    value: 7.40,
-    decimals: 2,
-    footer: "Returns that are measured and reliable.",
-  },
-  {
-    title: "Lease Security",
-    icon: ShieldCheck,
-    bigSuf: " yrs",
-    value: 10,
-    label: "Lease Period (5 + 5) ",
-    secondary: {
-      value: "5",
-      suf: "yrs",
-      label: "Lock-in Period",
-    },
-    footer: "Because stability is the real return.",
-  },
-];
-
-/* ---------------- Main ---------------- */
 export default function WealthApproach() {
   return (
-    <section
-      id="wealth"
-      className="relative py-16 sm:py-20 lg:py-28 overflow-hidden"
+    <section id="wealth" data-testid="wealth-approach-section">
+      {/* Section 1: The Growth Blueprint */}
+      <Section1 />
+
+      {/* Section 2: ROI */}
+      <Section2 />
+
+      {/* Section 3: Strategic Project Synopsis */}
+      <Section3 />
+    </section>
+  );
+}
+
+/* ============ SECTION 1: The Growth Blueprint ============ */
+function Section1() {
+  return (
+    <div
+      className="relative section-cream py-16 lg:py-24 overflow-hidden"
       style={{
-        background:
-          "radial-gradient(ellipse at top, #103e2e 0%, #061812 75%)",
+        backgroundImage: `url(${flowerBackgroundLeft}), url(${flowerBackgroundRight})`,
+        backgroundPosition: 'left center, right center',
+        backgroundRepeat: 'no-repeat, no-repeat',
+        backgroundSize: 'contain, contain'
       }}
     >
-      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
-        {/* Heading */}
-        <div className="text-center mb-10 sm:mb-14 lg:mb-20">
-          <span className="text-gold text-[10px] sm:text-xs tracking-[0.3em] uppercase">
+      <div className="relative max-w-[1300px] mx-auto px-6 lg:px-10">
+        {/* Animated Green Flower - Top Right */}
+        <motion.img
+          src={greenMovingFlower}
+          alt="Flower"
+          className="absolute top-8 right-6 lg:right-10 w-12 h-12 lg:w-20 lg:h-20"
+          animate={{
+            rotate: [0, 360],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <p className="text-[#0c2a20]/70 text-sm tracking-wide mb-2">
             The Growth Blueprint
-          </span>
-
-          <h2 className="font-display text-sage text-2xl sm:text-4xl lg:text-6xl mt-3 sm:mt-4">
-            A Structured Approach{" "}
-            <span className="italic shimmer-gold">to Growing Wealth</span>
+          </p>
+          <h2 className="font-display text-[#0c2a20] text-2xl md:text-4xl lg:text-5xl leading-tight">
+            A STRUCTURED APPROACH TO
+            <br />
+            GROWING WEALTH
           </h2>
+        </motion.div>
+
+        {/* 18000 Card with Bounce Animation */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center mb-12"
+        >
+          <motion.div
+            animate={{
+              y: [0, -15, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="bg-[#0c2a20] rounded-3xl px-8 md:px-12 py-6 md:py-8 text-center w-full max-w-[500px]"
+          >
+            <div className="font-display text-[#fed04f] text-5xl md:text-6xl lg:text-7xl font-bold">
+              ₹18000
+            </div>
+            <p className="text-sage text-base md:text-lg mt-2">Starting Monthly Rental</p>
+          </motion.div>
+        </motion.div>
+
+        {/* Rental Escalation */}
+        <div className="text-center mb-8">
+          <h3 className="font-display text-[#0c2a20] text-xl md:text-2xl lg:text-3xl mb-6">
+            Rental Escalation
+          </h3>
+
+          {/* Desktop: Side by side, Mobile: Stacked */}
+          <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-[#0c2a20] rounded-3xl px-8 py-6 w-full max-w-[500px] md:max-w-[280px]"
+            >
+              <div className="flex items-center justify-between md:flex-col md:text-center gap-4 md:gap-0">
+                <div className="font-display text-[#fed04f] text-4xl md:text-5xl lg:text-6xl font-bold">
+                  15%
+                </div>
+                <p className="text-sage text-sm md:text-base text-left md:text-center md:mt-2">
+                  After First<br />3 Years
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-[#0c2a20] rounded-3xl px-8 py-6 w-full max-w-[500px] md:max-w-[280px]"
+            >
+              <div className="flex items-center justify-between md:flex-col md:text-center gap-4 md:gap-0">
+                <div className="font-display text-[#fed04f] text-4xl md:text-5xl lg:text-6xl font-bold">
+                  5%
+                </div>
+                <p className="text-sage text-sm md:text-base text-left md:text-center md:mt-2">
+                  4th Year<br />Onwards
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </div>
 
-        {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-7 mb-6">
-          {PILLARS.slice(0, 3).map((p, i) => (
-            <PillarCard key={p.title} pillar={p} index={i} />
-          ))}
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 max-w-[920px] mx-auto">
-          {PILLARS.slice(3).map((p, i) => (
-            <PillarCard key={p.title} pillar={p} index={i + 3} />
-          ))}
-        </div>
-
-        <p className="mt-10 text-right text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-sage/40">
-          * T & C Apply
+        {/* Note */}
+        <p className="text-center text-[#0c2a20]/60 text-xs mt-12 px-4">
+          Note: The co-living service operator is legally obligated to pay the rent directly to the property owners
+        </p>
+        <p className="text-right text-[#0c2a20]/60 text-xs mt-2">
+          *T & C's Apply
         </p>
       </div>
-    </section>
+    </div>
+  );
+}
+
+/* ============ SECTION 2: ROI ============ */
+function Section2() {
+  return (
+    <div
+      className="relative py-10 lg:py-10 overflow-hidden"
+      style={{
+        backgroundImage: `url(${roiBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundColor: '#0c2a20'
+      }}
+    >
+      <div className="relative max-w-[1300px] mx-auto px-6 lg:px-10 text-center">
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-8"
+        >
+          <p className="text-sage/80 text-base mb-3">
+            A well-planted investment
+          </p>
+          <h2 className="font-display text-sage text-2xl md:text-5xl lg:text-4xl leading-tight">
+            ALWAYS GROWS STRONGER ROI
+          </h2>
+        </motion.div>
+
+        {/* Avg ROI Label */}
+        <p className="text-sage text-xl lg:text-2xl">
+          Avg ROI
+        </p>
+
+        {/* ROI Image - Hoverable */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center"
+        >
+          <motion.img
+            src={roiImage}
+            alt="7.40% ROI"
+            className="max-w-[800px] lg:max-w-[900px] w-full h-auto cursor-pointer"
+            whileHover={{
+              scale: 1.15,
+              y: -20,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 250,
+              damping: 18,
+            }}
+          />
+        </motion.div>
+
+        {/* Note */}
+        <p className="text-sage/60 text-xs mt-12">
+          Note: The co-living service operator is legally obligated to pay the rent directly to the property owners
+        </p>
+        <p className="text-right text-sage/60 text-xs mt-2">
+          *T & C's Apply
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ============ SECTION 3: Strategic Project Synopsis ============ */
+function Section3() {
+  const pillars = [
+    {
+      title: "LEASE SECURITY",
+      value: "10-Year",
+      subtitle: "Lease Period (5+5)"
+    },
+    {
+      title: "EQUAL LOCK-IN PERIOD",
+      value: "5-Year",
+      subtitle: "For Both Service Operator & Investor"
+    },
+    {
+      title: "IMMEDIATE INCOME",
+      value: "Invest Today",
+      subtitle: "Income Starts Immediately",
+      highlight: true
+    },
+    {
+      title: "STRONG RENTAL BACKING",
+      value: "Rented To",
+      subtitle: "Fastest-Growing Co-Living Brand",
+      highlight: true
+    }
+  ];
+
+  return (
+    <div
+      className="relative py-16 lg:py-24 overflow-hidden"
+      style={{
+        backgroundImage: `url(${greenBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundColor: '#0c2a20'
+      }}
+    >
+      <div className="relative max-w-[1300px] mx-auto px-6 lg:px-10">
+        {/* Animated Light Green Flower - Top Right */}
+        <motion.img
+          src={lightGreenMovingFlower}
+          alt="Flower"
+          className="absolute top-8 right-6 lg:right-10 w-12 h-12 lg:w-20 lg:h-20"
+          animate={{
+            rotate: [0, 360],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12 lg:mb-16"
+        >
+          <h2 className="font-display text-sage text-2xl md:text-4xl lg:text-5xl px-4">
+            STRATEGIC PROJECT SYNOPSIS
+          </h2>
+        </motion.div>
+
+        {/* 4 Pillar Cards - 2x2 Grid on Mobile, 4 columns on Desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          {pillars.map((pillar, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -8 }}
+              className="relative rounded-2xl lg:rounded-3xl p-4 lg:p-6 overflow-hidden border border-sage/20"
+              style={{
+                background: 'linear-gradient(180deg, rgba(15,55,40,0.55) 0%, rgba(8,30,22,0.85) 100%)',
+                minHeight: '240px'
+              }}
+            >
+              {/* Title */}
+              <h3 className="text-sage text-center text-xs lg:text-base font-semibold mb-4 lg:mb-6 tracking-wide leading-tight">
+                {pillar.title}
+              </h3>
+
+              {/* Divider */}
+              <div className="mx-auto w-px h-8 lg:h-12 bg-sage/30 mb-4 lg:mb-6"></div>
+
+              {/* Value */}
+              <div className="flex-1 flex flex-col items-center justify-center text-center">
+                <div className={`font-display font-bold text-2xl lg:text-3xl xl:text-4xl mb-2 lg:mb-3 ${pillar.highlight ? 'text-[#fed04f]' : 'text-[#fed04f]'
+                  }`}>
+                  {pillar.value}
+                </div>
+                <p className="text-sage/80 text-xs lg:text-sm leading-tight lg:leading-relaxed px-2">
+                  {pillar.subtitle}
+                </p>
+              </div>
+
+              {/* Bottom Divider */}
+              <div className="mx-auto w-px h-8 lg:h-12 bg-sage/20 mt-4 lg:mt-6"></div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Note */}
+        <p className="text-right text-sage/60 text-xs mt-12">
+          *T & C's Apply
+        </p>
+      </div>
+    </div>
   );
 }

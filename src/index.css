@@ -1,4 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@font-face {
+    font-family: "Mavel Text";
+    src: url("../public/fonts/Mavel-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "Mavel Text";
+    src: url("../public/fonts/MavelText-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -26,20 +41,34 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0;
     background: var(--cream);
     color: var(--forest);
     overflow-x: hidden;
 }
 
-.font-display {
-    font-family: 'Fraunces', serif;
-    font-optical-sizing: auto;
-    letter-spacing: -0.01em;
+.section-title {
+    font-family: 'Mavel Text', sans-serif;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.font-title {
+    font-family: 'Mavel Text', sans-serif;
+    font-weight: 500;
 }
 
 .font-body {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
 
 /* Selection */
@@ -235,6 +264,33 @@ body {
 .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.brochure-btn {
+    width: 222px;
+    height: 48px;
+
+    border-radius: 7px;
+    border: none;
+
+    background: #D8D7AD;
+    color: #183B2D;
+
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s ease;
+}
+
+.brochure-btn:hover {
+    background: #e4e3bc;
 }
 
 @layer components {

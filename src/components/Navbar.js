@@ -23,7 +23,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // lock body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
@@ -31,13 +30,13 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
             ? "bg-[#0c2a1e]/90 backdrop-blur-md border-b border-sage/10 py-3"
             : "bg-transparent py-4"
-          }`}
+        }`}
       >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
-
           {/* Logo */}
           <img
             src={logo}
@@ -46,12 +45,12 @@ export default function Navbar() {
           />
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-10">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="text-[12px] tracking-[0.2em] uppercase text-sage/70 hover:text-gold transition"
+                className="font-sans text-[16px] font-normal text-sage hover:text-gold transition"
               >
                 {l.label}
               </a>
@@ -61,9 +60,22 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <button
             onClick={() => setShowPopup(true)}
-            className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-gold/40 text-gold text-[12px] tracking-[0.2em] uppercase hover:bg-gold hover:text-forest transition"
+            className="
+              hidden lg:inline-flex
+              items-center justify-center
+              w-[222px]
+              h-[48px]
+              rounded-[7px]
+              bg-sage
+              text-forest
+              font-sans
+              text-[16px]
+              font-normal
+              hover:opacity-90
+              transition
+            "
           >
-            Download Brochure
+            Download brochure
           </button>
 
           {/* Mobile Toggle */}
@@ -79,19 +91,22 @@ export default function Navbar() {
       {/* Mobile Overlay */}
       <div
         onClick={() => setOpen(false)}
-        className={`fixed inset-0 bg-black/40 z-40 transition-opacity lg:hidden ${open ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
+        className={`fixed inset-0 bg-black/40 z-40 transition-opacity lg:hidden ${
+          open ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
       />
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[85%] max-w-sm bg-[#0c2a1e] z-50 shadow-2xl transform transition-transform duration-500 lg:hidden ${open ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`fixed top-0 right-0 h-full w-[85%] max-w-sm bg-[#0c2a1e] z-50 shadow-2xl transform transition-transform duration-500 lg:hidden ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <div className="flex justify-between items-center px-5 py-4 border-b border-sage/10">
-          <span className="text-gold text-sm tracking-[0.2em] uppercase">
+          <span className="font-title text-gold text-[20px] uppercase">
             Menu
           </span>
+
           <button onClick={() => setOpen(false)}>
             <X className="text-sage" />
           </button>
@@ -106,7 +121,7 @@ export default function Navbar() {
                   setOpen(false);
                   setShowPopup(true);
                 }}
-                className="py-4 text-left text-sage/80 uppercase tracking-[0.18em] border-b border-sage/10"
+                className="py-4 text-left text-sage border-b border-sage/10 font-sans text-[16px]"
               >
                 {l.label}
               </button>
@@ -115,22 +130,32 @@ export default function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="py-4 text-sage/80 uppercase tracking-[0.18em] border-b border-sage/10"
+                className="py-4 text-sage border-b border-sage/10 font-sans text-[16px]"
               >
                 {l.label}
               </a>
             )
           )}
 
-          {/* CTA */}
+          {/* Mobile CTA */}
           <button
             onClick={() => {
               setOpen(false);
               setShowPopup(true);
             }}
-            className="mt-6 w-full py-3 rounded-full bg-gold text-forest font-semibold tracking-[0.2em] uppercase text-xs"
+            className="
+              mt-6
+              w-full
+              h-[48px]
+              rounded-[7px]
+              bg-sage
+              text-forest
+              font-sans
+              text-[16px]
+              font-normal
+            "
           >
-            Download Brochureow
+            Download brochure
           </button>
         </div>
       </div>

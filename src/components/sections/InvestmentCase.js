@@ -8,7 +8,7 @@ import zeroManagementHassle from "../../assets/icons/Zero Management Hassle.png"
 import propertyValueAppreciation from "../../assets/icons/Property Value Appreciation.png";
 import zeroMaintenanceCost from "../../assets/icons/Zero Maintenance Cost.png";
 import stablePredictableReturns from "../../assets/icons/Stable & Predictable Returns.png";
-import Flower from "../../assets/background-images/flower-right.png"
+import Flower from "../../assets/background-images/flower-right.png";
 
 const reasons = [
   {
@@ -46,7 +46,6 @@ const reasons = [
 ];
 
 export default function InvestmentCase() {
-  console.log("Flower:", Flower);
   return (
     <section
       id="about"
@@ -67,16 +66,25 @@ export default function InvestmentCase() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-3xl md:text-4xl lg:text-[54px] leading-[1.1] uppercase tracking-tight font-normal">
-            Prereleased Studio Apartments
-          </h2>
+          <h1 className="font-title text-[36px] font-medium uppercase">
+            PRELEASED STUDIO APARTMENTS
+          </h1>
 
-          <p className="font-display text-xl md:text-2xl lg:text-[34px] mt-2 text-[#0c2a20] font-normal">
+          <p
+            className="
+      font-sans
+      text-[24px]
+      font-normal
+      leading-[100%]
+      text-center
+      text-[#0c2a20]
+      mt-3
+    "
+          >
             Are A Better Growth Asset
           </p>
         </motion.div>
 
-        {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
           {reasons.map((r, i) => {
             return (
@@ -91,27 +99,85 @@ export default function InvestmentCase() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 whileHover={{
-                  y: -8,
-                  transition: { duration: 0.3 },
+                  y: -4,
+                  transition: { duration: 0.25 },
                 }}
-                style={{ backgroundColor: "#f2f0df" }}
-                className="group relative rounded-3xl p-5 lg:p-6 overflow-hidden hover:bg-[#d4e5d0] hover:shadow-xl transition-all duration-300"
+                className="
+                group
+                relative
+                w-full
+                max-w-[283px]
+                h-[103px]
+                rounded-[20px]
+                border
+                border-[#F8F8EF]
+                bg-gradient-to-b
+                from-[#F8F8F0]
+                to-[#EFEEDB]
+                px-6
+                py-5
+                overflow-hidden
+                transition-all
+                duration-300
+                hover:shadow-lg
+              "
                 data-testid={`reason-card-${i + 1}`}
               >
-                {/* Horizontal Layout: Icon and Content Side by Side */}
-                <div className="flex items-center gap-4">
+                {/* Soft green glow behind text */}
+                <div
+                  className="
+                  absolute
+                  right-0
+                  top-1/2
+                  -translate-y-1/2
+                  w-[140px]
+                  h-[80px]
+                  bg-[#0c2a20]
+                  opacity-[0.05]
+                  blur-3xl
+                  rounded-full
+                  pointer-events-none
+                "
+                />
+
+                <div className="relative flex items-center gap-4 h-full">
                   {/* Icon */}
-                  <div className="relative w-16 h-16 lg:w-20 lg:h-20 rounded-2xl flex items-center justify-center flex-shrink-0 bg-[#0c2a20] transition-all duration-300 group-hover:scale-125 group-hover:-translate-y-1">
+                  <div
+                    className="
+                    w-[52px]
+                    h-[52px]
+                    rounded-[12px]
+                    bg-[#0c2a20]
+                    flex
+                    items-center
+                    justify-center
+                    flex-shrink-0
+                    transition-all
+                    duration-300
+                    group-hover:scale-125
+                    group-hover:-translate-y-1
+                  "
+                  >
                     <img
                       src={r.icon}
                       alt={r.title}
-                      className="w-8 h-8 lg:w-10 lg:h-10 object-contain"
+                      className="w-6 h-6 object-contain"
                       style={{ filter: "brightness(0) invert(1)" }}
                     />
                   </div>
 
-                  {/* Content */}
-                  <h3 className="relative font-display text-[16px] lg:text-[18px] leading-[1.4] font-normal text-[#0c2a20] flex-1">
+                  {/* Text */}
+                  <h3
+                    className="
+                    font-sans
+                    text-[16px]
+                    font-medium
+                    leading-[130%]
+                    text-[#1D1D1B]
+                    relative
+                    z-10
+                  "
+                  >
                     {r.title}
                   </h3>
                 </div>

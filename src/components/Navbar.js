@@ -23,6 +23,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // lock body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
@@ -30,13 +31,13 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-[#0c2a1e]/90 backdrop-blur-md border-b border-sage/10 py-3"
-            : "bg-transparent py-4"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? "bg-[#0c2a1e]/90 backdrop-blur-md border-b border-sage/10 py-3"
+          : "bg-transparent py-4"
+          }`}
       >
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
+        <div className="max-w-[1400px] mx-auto px-2 sm:px-6 lg:px-10 flex items-center justify-between">
+
           {/* Logo */}
           <img
             src={logo}
@@ -45,12 +46,12 @@ export default function Navbar() {
           />
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-10">
+          <nav className="hidden lg:flex items-center gap-8">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="font-sans text-[16px] font-normal text-sage hover:text-gold transition"
+                className="text-[12px] tracking-[0.2em] uppercase text-sage/70 hover:text-gold transition"
               >
                 {l.label}
               </a>
@@ -61,52 +62,84 @@ export default function Navbar() {
           <button
             onClick={() => setShowPopup(true)}
             className="
-              hidden lg:inline-flex
-              items-center justify-center
-              w-[222px]
-              h-[48px]
-              rounded-[7px]
-              bg-sage
-              text-forest
-              font-sans
-              text-[16px]
-              font-normal
-              hover:opacity-90
-              transition
-            "
+    hidden lg:inline-flex
+    items-center justify-center
+    w-[222px]
+    h-[48px]
+    rounded-[7px]
+    bg-sage
+    text-forest
+    font-sans
+    text-[16px]
+    font-normal
+    hover:opacity-90
+    transition
+  "
           >
             Download brochure
           </button>
 
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="lg:hidden text-sage p-2"
-          >
-            {open ? <X size={26} /> : <Menu size={26} />}
-          </button>
+          
+         {/* Mobile Right Side */}
+<div className="lg:hidden flex items-center gap-3">
+  {/* Download Brochure */}
+  <button
+    onClick={() => setShowPopup(true)}
+    className="
+      h-[29px]
+      px-3
+      rounded-[3px]
+      bg-[#D9DCB1]
+      text-[#14382D]
+      text-[9px]
+      font-medium
+      whitespace-nowrap
+      flex
+      items-center
+      justify-center
+    "
+  >
+    Download brochure
+  </button>
+
+  {/* Menu */}
+  <button
+    onClick={() => setOpen(!open)}
+    className="
+      w-[52px]
+      h-[52px]
+      flex
+      items-center
+      justify-center
+      text-[#D9DCB1]
+    "
+  >
+    {open ? (
+      <X size={38} strokeWidth={2} />
+    ) : (
+      <Menu size={38} strokeWidth={2} />
+    )}
+  </button>
+</div>
         </div>
       </header>
 
       {/* Mobile Overlay */}
       <div
         onClick={() => setOpen(false)}
-        className={`fixed inset-0 bg-black/40 z-40 transition-opacity lg:hidden ${
-          open ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
+        className={`fixed inset-0 bg-black/40 z-40 transition-opacity lg:hidden ${open ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
       />
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[85%] max-w-sm bg-[#0c2a1e] z-50 shadow-2xl transform transition-transform duration-500 lg:hidden ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-[85%] max-w-sm bg-[#0c2a1e] z-50 shadow-2xl transform transition-transform duration-500 lg:hidden ${open ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex justify-between items-center px-5 py-4 border-b border-sage/10">
-          <span className="font-title text-gold text-[20px] uppercase">
+          <span className="text-gold text-sm tracking-[0.2em] uppercase">
             Menu
           </span>
-
           <button onClick={() => setOpen(false)}>
             <X className="text-sage" />
           </button>
@@ -121,7 +154,7 @@ export default function Navbar() {
                   setOpen(false);
                   setShowPopup(true);
                 }}
-                className="py-4 text-left text-sage border-b border-sage/10 font-sans text-[16px]"
+                className="py-4 text-left text-sage/80 uppercase tracking-[0.18em] border-b border-sage/10"
               >
                 {l.label}
               </button>
@@ -130,33 +163,14 @@ export default function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="py-4 text-sage border-b border-sage/10 font-sans text-[16px]"
+                className="py-4 text-sage/80 uppercase tracking-[0.18em] border-b border-sage/10"
               >
                 {l.label}
               </a>
             )
           )}
 
-          {/* Mobile CTA */}
-          <button
-            onClick={() => {
-              setOpen(false);
-              setShowPopup(true);
-            }}
-            className="
-              mt-6
-              w-full
-              h-[48px]
-              rounded-[7px]
-              bg-sage
-              text-forest
-              font-sans
-              text-[16px]
-              font-normal
-            "
-          >
-            Download brochure
-          </button>
+         
         </div>
       </div>
 

@@ -1,12 +1,14 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { Phone, MapPin } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 
 import gmaps from "../../assets/background-images/gmap.png";
-import bluepearlWhite from "../../assets/Bluepearl White.png";
+import bluepearlWhite from "../../assets/bluepearl-white.png";
 import dwellerWhite from "../../assets/DP WHite.png";
 import rera from "../../assets/Rera.png";
 import qr from "../../assets/QR.png";
+import credaiLogo from "../../assets/credai-pune-metro.png"; 
+import instagram from "../../assets/icons/instagram.png";
+import facebook from "../../assets/icons/facebook.png"
 
 
 const InstagramIcon = ({ className = "" }) => (
@@ -33,210 +35,155 @@ const FacebookIcon = ({ className = "" }) => (
 
 export default function Footer() {
   return (
-    <footer
-      data-testid="footer-section"
-      className="relative w-full"
-    >
-      {/* ───── TOP: Light sage band ───── */}
-      <div
-        className="relative w-full"
-        style={{ backgroundColor: "#e4e6c0" }}
-      >
-        <div className="max-w-[1300px] mx-auto px-5 sm:px-6 lg:px-12 py-12 sm:py-14 lg:py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-            {/* ── Map ── */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="relative rounded-2xl overflow-hidden shadow-[0_18px_40px_-22px_rgba(0,0,0,0.35)]"
-              data-testid="footer-map"
-            >
+    <footer className="w-full">
+      {/* ================= TOP SECTION ================= */}
+      <div className="bg-[#DDE0B6]">
+        <div className="max-w-[1100px] mx-auto px-6 py-[42px]">
+          <div className="grid lg:grid-cols-[580px_1fr] gap-12 items-start">
+
+            {/* MAP */}
+            <div className="rounded-[18px] overflow-hidden shadow-lg">
               <img
                 src={gmaps}
-                alt="Project location — Baner, Pune"
-                className="block w-full h-auto object-cover"
-                draggable={false}
+                alt="Location Map"
+                className="w-[580px] h-[500px] object-cover"
               />
-            </motion.div>
+            </div>
 
-            {/* ── Right column: Contact + RERA + CREDAI + Social ── */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-              className="flex flex-col gap-7 sm:gap-8"
-            >
-              {/* Address */}
-              <div
-                className="flex items-start gap-3 sm:gap-4"
-                data-testid="footer-address"
-              >
-                <MapPin
-                  className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 mt-1"
-                  style={{ color: "#0c2a20" }}
-                  strokeWidth={2}
-                />
-                <p className="font-sans font-bold text-[#0c2a20] text-[16px] sm:text-[17px] lg:text-[19px] leading-[1.45]">
-                  Sr. 38,&nbsp; Behind Costa Blanca Society, Pancard
+            {/* RIGHT CONTENT */}
+            <div className="pt-6">
+
+              {/* ADDRESS */}
+              <div className="flex gap-4 items-start">
+                <div className="w-[38px] h-[38px] rounded-full bg-[#14382D] flex items-center justify-center flex-shrink-0">
+                  <MapPin
+                    size={18}
+                    className="text-[#DDE0B6]"
+                    strokeWidth={2.5}
+                  />
+                </div>
+
+                <p className="text-[#14382D] font-semibold text-[18px] leading-[1.4]">
+                  Sr. 38, Behind Costa Blanca Society, Pancard
                   <br />
                   Club Road, Baner, Pune – 411045
                 </p>
               </div>
 
-              {/* Phone */}
-              <div
-                className="flex items-center gap-3 sm:gap-4"
-                data-testid="footer-phone"
-              >
-                <Phone
-                  className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7"
-                  style={{ color: "#0c2a20" }}
-                  strokeWidth={2}
-                />
+              {/* PHONE */}
+              <div className="flex gap-4 items-center mt-10">
+                <div className="w-[38px] h-[38px] rounded-full bg-[#14382D] flex items-center justify-center">
+                  <Phone
+                    size={18}
+                    className="text-[#DDE0B6]"
+                    strokeWidth={2.5}
+                  />
+                </div>
+
                 <a
                   href="tel:+919696467802"
-                  className="font-sans font-bold text-[#0c2a20] text-xl sm:text-2xl lg:text-[26px] tracking-tight hover:opacity-80 transition-opacity"
+                  className="text-[#14382D] text-[38px] font-bold tracking-tight"
                 >
                   +91 96964 67802
                 </a>
               </div>
 
-              {/* RERA row: QR + small logo + text */}
-              <div
-                className="flex items-start gap-4 sm:gap-5 pt-2"
-                data-testid="footer-rera"
-              >
+              {/* RERA */}
+              <div className="flex gap-5 mt-10 items-start">
                 <img
                   src={qr}
-                  alt="MahaRERA QR Code"
-                  className="h-20 w-20 sm:h-24 sm:w-24 object-contain bg-white p-1 rounded-sm flex-shrink-0"
-                  draggable={false}
-                  data-testid="footer-qr"
+                  alt="QR"
+                  className="w-[82px] h-[82px]"
                 />
+
                 <img
                   src={rera}
-                  alt="MahaRERA"
-                  className="h-12 sm:h-14 w-auto object-contain flex-shrink-0 mt-1"
-                  draggable={false}
+                  alt="RERA"
+                  className="h-[42px] w-auto mt-1"
                 />
-                <div className="flex flex-col justify-center">
-                  <p className="font-sans text-[#0c2a20] text-[13px] sm:text-[15px] leading-snug">
+
+                <div>
+                  <p className="text-[#14382D] text-[14px]">
                     MahaRERA Reg. No.
                   </p>
-                  <p className="font-sans font-bold text-[#0c2a20] text-[16px] sm:text-[19px] leading-snug">
+
+                  <p className="text-[#14382D] text-[18px] font-bold">
                     PR1260002500765
                   </p>
-                  <a
-                    href="https://maharera.maharashtra.gov.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-sans text-[#0c2a20] text-[12px] sm:text-[13px] leading-snug hover:underline mt-0.5"
-                  >
+
+                  <p className="text-[#14382D] text-[14px]">
                     maharera.mahaonline.gov.in
-                  </a>
+                  </p>
                 </div>
               </div>
 
-              {/* CREDAI horizontal */}
-              <div
-                className="flex items-center gap-5 sm:gap-6"
-                data-testid="footer-credai"
-              >
-                <div className="flex flex-col items-center leading-none">
-                  {/* Mountain peak above CREDAI */}
-                  <svg
-                    viewBox="0 0 40 18"
-                    className="w-7 h-3 sm:w-8 sm:h-3.5 mb-1"
-                    aria-hidden="true"
-                  >
-                    <path d="M20 0 L28 16 L24 16 L20 8 L16 16 L12 16 Z" fill="#1f7a3a" />
-                  </svg>
-                  <p
-                    className="font-display font-extrabold leading-none"
-                    style={{
-                      fontSize: "30px",
-                      letterSpacing: "0.06em",
-                      color: "#1f7a3a",
-                    }}
-                  >
-                    CREDAI
+              {/* CREDAI */}
+              <div className="flex items-center gap-6 mt-10">
+                <img
+                  src={credaiLogo}
+                  alt="CREDAI"
+                  className="h-[60px] w-auto"
+                />
+
+                <div className="text-[#14382D]">
+                  <p className="text-[18px]">
+                    We are a member of
                   </p>
-                  <p
-                    className="font-sans font-semibold text-[10px] sm:text-[11px] tracking-[0.28em] mt-1"
-                    style={{ color: "#1f7a3a" }}
-                  >
-                    PUNE METRO
+
+                  <p className="text-[18px]">
+                    CREDAI Pune Metro
                   </p>
                 </div>
-                <p className="font-sans text-[#0c2a20] text-[16px] sm:text-[18px] leading-snug">
-                  We are a member of
-                  <br />
-                  CREDAI Pune Metro
-                </p>
               </div>
 
-              {/* Social */}
-              <div
-                className="flex flex-col gap-3 pt-1"
-                data-testid="footer-social"
-              >
-                <p className="font-sans text-[#0c2a20] text-[15px] sm:text-[16px]">
+              {/* SOCIAL */}
+              <div className="mt-10">
+                <p className="text-[#14382D] text-[18px] font-semibold mb-4">
                   Follow us on
                 </p>
-                <div className="flex items-center gap-4">
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                    data-testid="footer-instagram"
-                    className="text-[#0c2a20] hover:opacity-70 transition-opacity"
-                  >
-                    <InstagramIcon className="w-7 h-7 sm:w-8 sm:h-8" />
+
+                <div className="flex gap-5">
+                  <a href="#">
+                    <img
+                      src={instagram}
+                      alt="Instagram"
+                      className="w-[38px] h-[38px]"
+                    />
                   </a>
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook"
-                    data-testid="footer-facebook"
-                    className="text-[#0c2a20] hover:opacity-70 transition-opacity"
-                  >
-                    <FacebookIcon className="w-7 h-7 sm:w-8 sm:h-8" />
+
+                  <a href="#">
+                    <img
+                      src={facebook}
+                      alt="Facebook"
+                      className="w-[38px] h-[38px]"
+                    />
                   </a>
                 </div>
               </div>
-            </motion.div>
+
+            </div>
           </div>
         </div>
       </div>
 
-      {/* ───── MIDDLE: Dark green branding band ───── */}
-      <div
-        className="relative w-full"
-        style={{ backgroundColor: "#0c2a20" }}
-      >
-        <div className="max-w-[1300px] mx-auto sm:px-4 lg:px-8 py-8">
-          <div className="relative grid grid-cols-1 md:grid-cols-2 items-center">
+      {/* ================= GREEN STRIP ================= */}
+      <div className="bg-[#14382D]">
+        <div className="max-w-[1100px] mx-auto py-10">
+          <div className="grid md:grid-cols-2 items-center">
 
-            <div className="hidden  absolute left-1/2 top-0 -translate-x-1/2 h-full  bg-white/20" />
-
-            <div className="flex justify-center md:justify-end md:pr-16">
+            <div className="flex justify-center">
               <img
                 src={bluepearlWhite}
-                alt="Bluepearl"
-                className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
+                alt="BluePearl"
+                className="h-[55px] w-auto"
               />
             </div>
 
-            <div className="flex justify-center md:justify-start md:pl-16">
+            <div className="flex justify-center mt-8 md:mt-0">
               <img
                 src={dwellerWhite}
                 alt="Dweller Pro"
-                className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
+                className="h-[55px] w-auto"
               />
             </div>
 
@@ -244,30 +191,26 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ───── BOTTOM: White disclaimer strip ───── */}
-      <div className="w-full bg-white">
-        <div className="max-w-[1300px] mx-auto px-5 sm:px-6 lg:px-12 py-5 sm:py-6 text-center">
-          <p
-            className="font-sans text-[#0c2a20]/85 text-[10.5px] sm:text-[11px] leading-[1.55]"
-            data-testid="footer-disclaimer"
-          >
-            <span className="font-semibold">Disclaimer:</span> All
-            representations are believed to be correct and envisaged by the
-            developer/promoter. All art renderings, illustrations, photographs
-            and pictures contained in this brochure are on artist&apos;s
-            impression only and the same should not be construed to be the
-            final images/views of the final project. The printed material does
-            not constitute a contract/offer of any type between the
-            developer/promoter and the purchaser and shall supersede all
+      {/* ================= DISCLAIMER ================= */}
+      <div className="bg-white">
+        <div className="max-w-[1200px] mx-auto px-4 py-4 text-center">
+
+          <p className="text-[8px] leading-[1] text-[#575757]">
+            Disclaimer: All representations are believed to be correct and
+            envisaged by the developer/promoter. All art renderings,
+            illustrations, photographs and pictures contained in this brochure
+            are on artist's impression only and the same should not be construed
+            to be the final images/views of the final project. The printed
+            material does not constitute a contract/offer of any type between
+            the developer/promoter and the purchaser and shall supersede all
             statements, documents or representations made prior to signing of
-            such sale and purchase agreement. Terms &amp; conditions apply.
+            such sale and purchase agreement. Terms & Conditions apply.
           </p>
-          <p
-            className="font-sans text-[#0c2a20] text-[10.5px] sm:text-[11px] mt-3"
-            data-testid="footer-copyright"
-          >
+
+          <p className="text-[10px] mt-2 text-[#444]">
             © COPYRIGHT 2026 38 Daffodils. All Rights Reserved.
           </p>
+
         </div>
       </div>
     </footer>

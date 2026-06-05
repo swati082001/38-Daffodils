@@ -7,8 +7,8 @@ import flowerBackgroundRight from "../../assets/background-images/flower-right.p
 import greenMovingFlower from "../../assets/background-images/Green Moving Flower Icon.svg";
 
 // Section 2
-import roiBackground from "../../assets/background-images/roi-bg.png";
-import roiImage from "../../assets/background-images/ROI.png";
+import variant1 from "../../assets/background-images/variant1.png";
+import variant2 from "../../assets/background-images/variant2.png";
 
 // Section 3
 import greenBackground from "../../assets/background-images/green-bg.png";
@@ -33,27 +33,25 @@ export default function WealthApproach() {
 function Section1() {
   return (
     <div
-      className="relative section-cream py-16 lg:py-24 overflow-hidden"
+      className="relative section-cream py-6 lg:py-6 overflow-hidden"
       style={{
         backgroundImage: `url(${flowerBackgroundLeft}), url(${flowerBackgroundRight})`,
-        backgroundPosition: 'left center, right center',
-        backgroundRepeat: 'no-repeat, no-repeat',
-        backgroundSize: 'contain, contain'
+        backgroundPosition: "left center, right center",
+        backgroundRepeat: "no-repeat, no-repeat",
+        backgroundSize: "contain, contain",
       }}
     >
-      <div className="relative max-w-[1300px] mx-auto px-6 lg:px-10">
-        {/* Animated Green Flower - Top Right */}
+      <div className="relative max-w-[1300px] mx-auto ">
+        {/* Animated Green Flower */}
         <motion.img
           src={greenMovingFlower}
           alt="Flower"
-          className="absolute top-8 right-6 lg:right-10 w-12 h-12 lg:w-20 lg:h-20"
-          animate={{
-            rotate: [0, 360],
-          }}
+          className="absolute top-2 right-12 lg:right-[-2] w-12 h-12 lg:w-20 lg:h-20"
+          animate={{ rotate: [0, 360] }}
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
         />
 
@@ -63,93 +61,200 @@ function Section1() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-6 mt-10"
         >
-          <p className="text-[#0c2a20]/70 text-sm tracking-wide mb-2">
+          <p
+            className="
+              font-body
+             
+              text-[18px]
+              lg:text-[24px]
+              mb-2
+            "
+          >
             The Growth Blueprint
           </p>
-          <h2 className="font-display text-[#0c2a20] text-2xl md:text-4xl lg:text-5xl leading-tight">
+
+          <h2
+            className="
+              font-title
+              text-[#0c2a20]
+              text-[30px]
+              lg:text-[34px]
+              font-medium
+              leading-[1.1]
+              uppercase
+            "
+          >
             A STRUCTURED APPROACH TO
             <br />
             GROWING WEALTH
           </h2>
         </motion.div>
 
-        {/* 18000 Card with Bounce Animation */}
+        {/* ₹18000 Card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex justify-center mb-12"
+          className="flex justify-center mb-10"
         >
           <motion.div
             animate={{
-              y: [0, -15, 0],
+              scale: [1, 1.06, 1],
+              y: [0, -4, 0],
+              boxShadow: [
+                "0px 0px 0px rgba(0,0,0,0)",
+                "0px 12px 30px rgba(12,42,32,0.25)",
+                "0px 0px 0px rgba(0,0,0,0)",
+              ],
             }}
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
-            className="bg-[#0c2a20] rounded-3xl px-8 md:px-12 py-6 md:py-8 text-center w-full max-w-[500px]"
+            className="
+    bg-[#0c2a20]
+    rounded-[28px]
+    px-10
+    py-6
+    text-center
+    w-[400px]
+  "
           >
-            <div className="font-display text-[#fed04f] text-5xl md:text-6xl lg:text-7xl font-bold">
+            <div className="font-number text-[#fed04f] text-[72px] leading-none">
               ₹18000
             </div>
-            <p className="text-sage text-base md:text-lg mt-2">Starting Monthly Rental</p>
+
+            <p
+              className="
+                font-body
+                text-sage
+                text-[18px]
+                mt-2
+              "
+            >
+              Starting Monthly Rental
+            </p>
           </motion.div>
         </motion.div>
 
         {/* Rental Escalation */}
-        <div className="text-center mb-8">
-          <h3 className="font-display text-[#0c2a20] text-xl md:text-2xl lg:text-3xl mb-6">
-            Rental Escalation
-          </h3>
+        <div className="text-center mb-6">
+          {/* Label Box */}
+          <div className="flex justify-center mb-5">
+            <div
+              className="
+                px-20
+                text-[#0c2a20]
+                text-[22px]
+                leading-none
+              "
+            >
+              Rental Escalation
+            </div>
+          </div>
 
-          {/* Desktop: Side by side, Mobile: Stacked */}
-          <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+          {/* Cards */}
+          <div className="flex justify-center gap-6 flex-wrap">
+            {/* 15% */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-[#0c2a20] rounded-3xl px-8 py-6 w-full max-w-[500px] md:max-w-[280px]"
+              className="
+                bg-[#0c2a20]
+                rounded-[22px]
+                px-8
+                py-5
+                w-[300px]
+              "
             >
-              <div className="flex items-center justify-between md:flex-col md:text-center gap-4 md:gap-0">
-                <div className="font-display text-[#fed04f] text-4xl md:text-5xl lg:text-6xl font-bold">
+              <div className="flex items-center justify-center gap-4">
+                <div className="font-number text-[#fed04f] text-[58px] leading-none">
                   15%
                 </div>
-                <p className="text-sage text-sm md:text-base text-left md:text-center md:mt-2">
-                  After First<br />3 Years
+
+                <p
+                  className="
+                    font-body
+                    text-sage
+                    text-[18px]
+                    leading-[1.2]
+                    text-left
+                  "
+                >
+                  After First
+                  <br />
+                  3 Years
                 </p>
               </div>
             </motion.div>
 
+            {/* 5% */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-[#0c2a20] rounded-3xl px-8 py-6 w-full max-w-[500px] md:max-w-[280px]"
+              className="
+                bg-[#0c2a20]
+                rounded-[22px]
+                px-8
+                py-5
+                w-[300px]
+              "
             >
-              <div className="flex items-center justify-between md:flex-col md:text-center gap-4 md:gap-0">
-                <div className="font-display text-[#fed04f] text-4xl md:text-5xl lg:text-6xl font-bold">
+              <div className="flex items-center justify-center gap-4">
+                <div className="font-number text-[#fed04f] text-[58px] leading-none">
                   5%
                 </div>
-                <p className="text-sage text-sm md:text-base text-left md:text-center md:mt-2">
-                  4th Year<br />Onwards
+
+                <p
+                  className="
+                    font-body
+                    text-sage
+                    text-[18px]
+                    leading-[1.2]
+                    text-left
+                  "
+                >
+                  4th Year
+                  <br />
+                  Onwards
                 </p>
               </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Note */}
-        <p className="text-center text-[#0c2a20]/60 text-xs mt-12 px-4">
-          Note: The co-living service operator is legally obligated to pay the rent directly to the property owners
+        {/* Notes */}
+        <p
+          className="
+            font-body
+            text-center
+            text-[#0c2a20]/60
+            text-xs
+            mt-50
+            px-4
+          "
+        >
+          Note: The co-living service operator is legally obligated to pay the
+          rent directly to the property owners
         </p>
-        <p className="text-right text-[#0c2a20]/60 text-xs mt-2">
+
+        <p
+          className="
+            font-body
+            text-right
+            text-[#0c2a20]/60
+            text-xs
+            mt-2
+          "
+        >
           *T & C's Apply
         </p>
       </div>
@@ -160,69 +265,18 @@ function Section1() {
 /* ============ SECTION 2: ROI ============ */
 function Section2() {
   return (
-    <div
-      className="relative py-10 lg:py-10 overflow-hidden"
-      style={{
-        backgroundImage: `url(${roiBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundColor: '#0c2a20'
-      }}
-    >
-      <div className="relative max-w-[1300px] mx-auto px-6 lg:px-10 text-center">
-        {/* Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
-          <p className="text-sage/80 text-base mb-3">
-            A well-planted investment
-          </p>
-          <h2 className="font-display text-sage text-2xl md:text-5xl lg:text-4xl leading-tight">
-            ALWAYS GROWS STRONGER ROI
-          </h2>
-        </motion.div>
+    <div className="group relative max-w-[1500px] mx-auto">
+      <img
+        src={variant1}
+        alt="ROI"
+        className="w-full transition-opacity duration-500 group-hover:opacity-0"
+      />
 
-        {/* Avg ROI Label */}
-        <p className="text-sage text-xl lg:text-2xl">
-          Avg ROI
-        </p>
-
-        {/* ROI Image - Hoverable */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex justify-center"
-        >
-          <motion.img
-            src={roiImage}
-            alt="7.40% ROI"
-            className="max-w-[800px] lg:max-w-[900px] w-full h-auto cursor-pointer"
-            whileHover={{
-              scale: 1.15,
-              y: -20,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 250,
-              damping: 18,
-            }}
-          />
-        </motion.div>
-
-        {/* Note */}
-        <p className="text-sage/60 text-xs mt-12">
-          Note: The co-living service operator is legally obligated to pay the rent directly to the property owners
-        </p>
-        <p className="text-right text-sage/60 text-xs mt-2">
-          *T & C's Apply
-        </p>
-      </div>
+      <img
+        src={variant2}
+        alt="ROI Hover"
+        className="absolute inset-0 w-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+      />
     </div>
   );
 }
@@ -256,7 +310,7 @@ function Section3() {
 
   return (
     <div
-      className="relative py-16 lg:py-24 overflow-hidden"
+      className="relative py-8 lg:py-16 overflow-hidden"
       style={{
         backgroundImage: `url(${greenBackground})`,
         backgroundSize: 'cover',
@@ -269,14 +323,12 @@ function Section3() {
         <motion.img
           src={lightGreenMovingFlower}
           alt="Flower"
-          className="absolute top-8 right-6 lg:right-10 w-12 h-12 lg:w-20 lg:h-20"
-          animate={{
-            rotate: [0, 360],
-          }}
+          className="absolute top-[-32px] right-12 lg:right-[-2] w-12 h-12 lg:w-24 lg:h-24"
+          animate={{ rotate: [0, 360] }}
           transition={{
-            duration: 25,
+            duration: 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
         />
 
@@ -288,13 +340,21 @@ function Section3() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 lg:mb-16"
         >
-          <h2 className="font-display text-sage text-2xl md:text-4xl lg:text-5xl px-4">
+          <h2
+            className="
+    font-title
+    text-sage
+    text-[34px]
+    lg:text-[54px]
+    text-center
+  "
+          >
             STRATEGIC PROJECT SYNOPSIS
           </h2>
         </motion.div>
 
         {/* 4 Pillar Cards - 2x2 Grid on Mobile, 4 columns on Desktop */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="flex flex-wrap justify-center gap-8">
           {pillars.map((pillar, index) => (
             <motion.div
               key={index}
@@ -302,34 +362,105 @@ function Section3() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="relative rounded-2xl lg:rounded-3xl p-4 lg:p-6 overflow-hidden border border-sage/20"
+              whileHover={{ y: -6 }}
+              className="
+        relative
+        rounded-[10px]
+        overflow-hidden
+        border
+        border-white/10
+        flex
+        flex-col
+        items-center
+        text-center
+        shrink-0
+      "
               style={{
-                background: 'linear-gradient(180deg, rgba(15,55,40,0.55) 0%, rgba(8,30,22,0.85) 100%)',
-                minHeight: '240px'
+                width: "280px",
+                height: "240px",
+                background:
+                  "linear-gradient(147.07deg, #326155 9.09%, #10342A 97.68%)",
               }}
             >
-              {/* Title */}
-              <h3 className="text-sage text-center text-xs lg:text-base font-semibold mb-4 lg:mb-6 tracking-wide leading-tight">
-                {pillar.title}
-              </h3>
+              <div className="flex flex-col items-center h-full w-full px-6 pt-8 pb-8">
+                {/* Heading */}
+                <h3
+                  className="
+                 font-body
+                 text-sage
+                 uppercase
+                 tracking-[2px]
+                 text-[14px]
+                 leading-[120%]
+               "
+                >
+                  {pillar.title}
+                </h3>
 
-              {/* Divider */}
-              <div className="mx-auto w-px h-8 lg:h-12 bg-sage/30 mb-4 lg:mb-6"></div>
+                {/* Top Divider */}
+                <div className="w-px h-[45px] bg-white/20 mt-3 mb-4" />
 
-              {/* Value */}
-              <div className="flex-1 flex flex-col items-center justify-center text-center">
-                <div className={`font-display font-bold text-2xl lg:text-3xl xl:text-4xl mb-2 lg:mb-3 ${pillar.highlight ? 'text-[#fed04f]' : 'text-[#fed04f]'
-                  }`}>
-                  {pillar.value}
+                {/* Content */}
+                <div className="flex-1 flex flex-col items-center justify-center text-center">
+                  {pillar.highlight ? (
+                    <>
+                      {/* White Text */}
+                      <div
+                        className="
+          font-body
+          text-white
+          text-[16px]
+          leading-[100%]
+        "
+                      >
+                        {pillar.value}
+                      </div>
+
+                      {/* Yellow Text */}
+                      <div
+                        className="
+          font-number
+          text-[#FED04F]
+          text-[24px]
+          leading-[125%]
+          mt-3
+        "
+                      >
+                        {pillar.subtitle}
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Yellow Text */}
+                      <div
+                        className="
+          font-number
+          text-[#FED04F]
+          text-[52px]
+          leading-none
+        "
+                      >
+                        {pillar.value}
+                      </div>
+
+                      {/* White Text */}
+                      <div
+                        className="
+          font-body
+          text-white
+          text-[16px]
+          leading-[100%]
+          mt-3
+        "
+                      >
+                        {pillar.subtitle}
+                      </div>
+                    </>
+                  )}
                 </div>
-                <p className="text-sage/80 text-xs lg:text-sm leading-tight lg:leading-relaxed px-2">
-                  {pillar.subtitle}
-                </p>
-              </div>
 
-              {/* Bottom Divider */}
-              <div className="mx-auto w-px h-8 lg:h-12 bg-sage/20 mt-4 lg:mt-6"></div>
+
+              </div>
             </motion.div>
           ))}
         </div>

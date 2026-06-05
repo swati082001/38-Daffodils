@@ -10,105 +10,119 @@ export default function FloorPlan() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   return (
-    <section
-      id="floor-plan"
-      data-testid="floorplan-section"
-      className="relative section-cream py-24 lg:py-36 px-5 lg:px-10 overflow-hidden"
-    >
-      {/* Center background watermark */}
-      <div
-        className="absolute pointer-events-none select-none w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] max-w-[900px] aspect-square"
-        style={{
-          top: "55%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          zIndex: 0,
-        }}
-      >
-        <motion.img
-          src={lightFlower}
-          alt=""
-          aria-hidden="true"
-          className="w-full h-full"
+    <section className="relative bg-[#d9dcb1] overflow-hidden px-10 pt-[80px] pb-[150px]">
+  {/* Watermark */}
+  <div
+          className="absolute pointer-events-none select-none w-[90%] sm:w-[80%] md:w-[70%] lg:w-[50%] max-w-[700px] aspect-square"
           style={{
-            opacity: 0.85,
-            filter: "brightness(0.78) saturate(1.15)",
+            top: "55%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 0,
           }}
-        />
-      </div>
-
-
-      <div className="relative z-10 max-w-[1000px] mx-auto">
-        {/* Header */}
-        <motion.h2
-          data-testid="studio-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="font-display text-[#0c2a20] text-3xl sm:text-4xl md:text-5xl lg:text-5xl tracking-tight text-center leading-[1.05] max-w-[80%] md:max-w-none mb-20"
         >
-          FLOOR PLAN
-        </motion.h2>
-
-        {/* Single blurred render with download CTA */}
-        <motion.div
-          data-testid="floor-render-0"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7 }}
-          className="relative rounded-2xl overflow-hidden group bg-forest/10"
-        >
-          {/* Image */}
-          <img
-            src={floorplan2}
-            alt="Floor plan preview"
-            draggable={false}
-            className="w-full h-[60vh] lg:h-[60vh] object-cover select-none transition-transform duration-700 group-hover:scale-[1.02]"
+          <motion.img
+            src={lightFlower}
+            alt=""
+            aria-hidden="true"
+            className="w-[800px] h-[800px]"
             style={{
-              filter: "blur(12px) saturate(1.05)",
-              transform: "scale(1.06)", // hides blur edges
+              opacity: 0.18,
+              filter: "brightness(0.78) saturate(1.15)",
             }}
           />
+        </div>
 
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-forest/25" />
+       <div className="relative z-10 flex flex-col items-center pt-0">
+    
+    {/* Title */}
+    <h2
+      className="
+        font-title
+        text-[32px]
+        md:text-[40px]
+        font-medium
+        uppercase
+        tracking-tight
+        text-black
+        mb-12
+      "
+    >
+      FLOOR PLAN
+    </h2>
 
-          {/* CTA */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <button
-              data-testid="floor-download-0"
-              onClick={() => setIsPopupOpen(true)}
-              className="group/btn relative inline-flex items-center gap-3 px-7 lg:px-9 py-4 rounded-full 
-              bg-gold text-forest font-semibold uppercase tracking-[0.2em] text-xs lg:text-sm 
-              shadow-[0_18px_40px_-12px_rgba(254,208,79,0.55)] 
-              hover:shadow-[0_22px_50px_-10px_rgba(254,208,79,0.7)] 
-              transition-all duration-500 hover:-translate-y-0.5 overflow-hidden"
-            >
-              <span
-                aria-hidden
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent 
-                -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"
-              />
-
-              <Download className="w-4 h-4 relative" />
-              <span className="relative">Download</span>
-            </button>
-          </div>
-        </motion.div>
-
-        {/* Footer note */}
-        <p className="mt-10 text-[11px] tracking-[0.2em] uppercase text-forest/40 text-center">
-          * T &amp; C Apply
-        </p>
-      </div>
-
-      {/* Popup */}
-      <BrochurePopup
-        open={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
+    {/* Card */}
+    <div
+      className="
+        relative
+        w-[100%]
+        max-w-[900px]
+        h-[385px]
+        rounded-[20px]
+        bg-[#f2f2f2]
+        overflow-hidden
+        mt-19
+      "
+    >
+      {/* Floorplan */}
+      <img
+        src={floorplan2}
+        alt="Floor Plan"
+        draggable={false}
+        className="
+          absolute
+          inset-0
+          m-auto
+          w-[82%]
+          object-contain
+          blur-[8px]
+          scale-105
+          select-none
+        "
       />
-    </section>
+
+      {/* Button */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <button
+          onClick={() => setIsPopupOpen(true)}
+          className="
+            w-[175px]
+            h-[54px]
+            bg-[#d8d7ad]
+            rounded-[10px]
+            text-[#183b2d]
+            text-[18px]
+            font-semibold
+            shadow-sm
+            hover:opacity-95
+            transition
+          "
+        >
+          Download
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {/* Bottom Right Note */}
+  <p
+    className="
+      absolute
+      bottom-8
+      right-20
+      text-[11px]
+      text-[#1a1a1a]
+      opacity-70
+    "
+  >
+    *T &amp; C's Apply
+  </p>
+  
+
+  <BrochurePopup
+    open={isPopupOpen}
+    onClose={() => setIsPopupOpen(false)}
+  />
+</section>
   );
 }

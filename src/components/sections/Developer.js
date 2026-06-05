@@ -1,7 +1,8 @@
 import React from "react";
-import { motion } from "framer-motion";
 import greenBackground from "../../assets/background-images/green-bg.png";
-import developerImage from "../../assets/E2.jpg";
+import developerImage from "../../assets/E3.jpg";
+import bluepearlLogo from "../../assets/Bluepearl.png";
+import logo from "../../assets/icons/white-logo.png"
 
 const stats = [
   { value: "10+", label: "Years in Business" },
@@ -11,123 +12,190 @@ const stats = [
   { value: "8", label: "Upcoming Projects" },
 ];
 
-const paragraphs = [
-  "Blue Pearl is synonymous with excellence in construction, setting new standards of innovation and reliability in both PMC and PCMC. Fueled by the pillars of trust, reliability, and passion, we adhere to a simple yet profound purpose to enhance the lives of our clientele by delivering unparalleled living experiences.",
-  "Our approach is straightforward yet transformative: we craft homes that epitomize beauty, punctuality, quality, and efficiency. With an unwavering commitment to ethical principles, Blue Pearl consistently surpasses expectations, delivering products of uncompromising quality.",
-  "Recognized by esteemed organizations such as CREDAI and NAREDCO for the past decade, our track record speaks volumes about our ability to deliver excellence, consistently meeting and exceeding specified standards within stipulated timelines.",
-];
-
 export default function Developer() {
   const scrollToEnquire = () => {
     const el = document.getElementById("enquire");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
   return (
     <section
       id="developer"
-      data-testid="developer-section"
-      className="relative overflow-hidden py-16 sm:py-20 lg:py-28"
+      className="relative overflow-hidden"
       style={{
-        backgroundColor: "#0c2a20",
         backgroundImage: `url(${greenBackground})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        minHeight: "740px",
       }}
     >
-      <div className="relative max-w-[1300px] mx-auto px-5 sm:px-6 lg:px-10">
-        {/* Top: Heading + Image + Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative rounded-2xl overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.5)]"
-            data-testid="developer-image"
+      <div className="max-w-[1040px] mx-auto pt-[75px] pb-[85px]">
+        {/* Top Row */}
+        <div className="flex items-start justify-center gap-[34px]">
+          {/* Left Image */}
+          <div
+            className="
+              w-[410px]
+              h-[500px]
+              rounded-[16px]
+              overflow-hidden
+              flex-shrink-0
+            "
           >
             <img
               src={developerImage}
-              alt="BluePearl Group development"
-              className="w-full h-full object-cover aspect-[4/3] lg:aspect-[5/4]"
+              alt="BluePearl"
+              className="w-full h-full object-cover"
               draggable={false}
             />
-          </motion.div>
+          </div>
 
           {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="text-[#e2e4b0]"
-          >
-            <h2
-              data-testid="developer-title"
-              className="font-display tracking-tight leading-[0.95] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl"
-            >
-              <span className="block text-[#e2e4b0]/80 text-xl sm:text-2xl lg:text-3xl tracking-[0.25em] uppercase font-light mb-2 sm:mb-3">
-                About
-              </span>
-              <span className="block font-semibold text-[#e2e4b0]">
-                BLUEPEARL
-              </span>
-            </h2>
+          <div className="w-[550px] pt-[10px]">
+            {/* Heading */}
+            <div className="flex items-center gap-4 mb-4">
+              <h2
+                className="
+                  font-title
+                  text-[white]
+                  text-[34px]
+                  font-light
+                  uppercase
+                  leading-none
+                "
+              >
+                ABOUT
+              </h2>
 
-            <div className="mt-6 sm:mt-8 space-y-5 sm:space-y-6">
-              {paragraphs.map((p, i) => (
-                <p
-                  key={i}
-                  className="text-[#e2e4b0]/85 text-[15px] sm:text-base leading-relaxed"
-                >
-                  {p}
-                </p>
-              ))}
+              <img
+                src={logo}
+                alt="BluePearl"
+                className="h-[36px] mb-[1rem]"
+              />
             </div>
 
-            <motion.button
+            {/* Paragraphs */}
+            <div
+              className="
+                text-[white]
+                text-[15px]
+                leading-[1.55]
+                font-light
+                space-y-5
+                opacity-90
+              "
+            >
+              <p>
+                Blue Pearl is synonymous with excellence in construction,
+                setting new standards of innovation and reliability in both PMC
+                and PCMC. Fueled by the pillars of trust, reliability, and
+                passion, we adhere to a simple yet profound purpose to enhance
+                the lives of our clientele by delivering unparalleled living
+                experiences.
+              </p>
+
+              <p>
+                Our approach is straightforward yet transformative: we craft
+                homes that epitomize beauty, punctuality, quality, and
+                efficiency. With an unwavering commitment to ethical principles,
+                Blue Pearl consistently surpasses expectations, delivering
+                products of uncompromising quality.
+              </p>
+
+              <p>
+                Recognized by esteemed organizations such as CREDAI and NAREDCO
+                for the past decade, our track record speaks volumes about our
+                ability to deliver excellence, consistently meeting and
+                exceeding specified standards within stipulated timelines.
+              </p>
+            </div>
+
+            {/* Button */}
+            <button
               onClick={scrollToEnquire}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="mt-8 inline-flex items-center justify-center rounded-xl px-8 py-3.5 bg-[#e2e4b0] text-[#0c2a20] font-display text-lg sm:text-xl tracking-wide hover:bg-[#eef0d4] transition-colors"
-              data-testid="developer-enquire-btn"
+              className="
+                mt-8
+                w-[155px]
+                h-[48px]
+                rounded-[8px]
+                bg-[#D7D9AE]
+                text-[#17382D]
+                text-[16px]
+                font-medium
+                hover:opacity-90
+                transition
+              "
             >
               Enquire Now
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
         </div>
 
-        {/* Stats Row */}
-        <div className="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
-          {stats.map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
-              className="rounded-2xl border border-[#e2e4b0]/15 bg-[#0c2a20]/40 backdrop-blur-sm px-5 py-6 sm:py-7 text-center"
-              data-testid={`developer-stat-${i}`}
+        {/* Stats */}
+        <div className="mt-[38px] flex justify-center gap-[14px]">
+          {stats.map((item, index) => (
+            <div
+              key={index}
+              className="
+                w-[188px]
+                h-[122px]
+                rounded-[12px]
+                border
+                border-[#4F8D7A]
+                bg-[#0B2D23]/55
+                backdrop-blur-[2px]
+                flex
+                flex-col
+                items-center
+                justify-center
+                text-center
+              "
             >
-              <div className="font-display text-[#fed04f] text-4xl sm:text-5xl lg:text-[44px] xl:text-5xl font-semibold leading-none">
-                {s.value}
+              <div
+                className="
+                  text-[#F0D35A]
+                  text-[42px]
+                  font-bold
+                  leading-none
+                "
+              >
+                {item.value}
               </div>
-              <div className="mt-3 text-[#e2e4b0] text-sm sm:text-[15px] tracking-wide">
-                {s.label}
+
+              <div
+                className="
+                  mt-3
+                  text-[#F4F4E5]
+                  text-[13px]
+                  leading-[1.25]
+                  px-3
+                "
+              >
+                {item.label}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-
-        {/* Footer disclaimer */}
-        <div className="mt-10 sm:mt-12 flex justify-end">
-          <p className="text-[#e2e4b0]/55 text-[11px] sm:text-xs tracking-wide">
-            Artistic Impression <span className="mx-1">|</span> *T &amp; C&apos;s Apply
-          </p>
-        </div>
       </div>
+
+      {/* Footer Note */}
+      <p
+        className="
+          absolute
+          bottom-[28px]
+          right-[120px]
+          text-[11px]
+          text-[#E2E4B0]
+          opacity-75
+        "
+      >
+        Artistic Impression | *T &amp; C&apos;s Apply
+      </p>
     </section>
   );
 }

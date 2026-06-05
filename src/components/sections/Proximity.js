@@ -128,221 +128,243 @@ export default function Proximity() {
     <section
       id="proximity"
       data-testid="proximity-section"
-      className="relative section-cream py-20 sm:py-24 lg:py-32 overflow-hidden"
+      className="relative section-cream pt-[50px] pb-[60px] overflow-hidden"
     >
       {/* Flower decorations */}
       <img
         src={flowerBackgroundLeft}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none select-none absolute left-0 top-1/2 -translate-y-1/2 w-[260px] sm:w-[320px] lg:w-[420px] opacity-70 z-0"
+        className="pointer-events-none select-none absolute left-0 top-1/2 -translate-y-1/2 w-[260px] sm:w-[320px] lg:w-[280px] opacity-70 z-0"
       />
+
       <img
         src={flowerBackgroundRight}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 w-[260px] sm:w-[320px] lg:w-[420px] opacity-70 z-0"
+        className="pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 w-[260px] sm:w-[320px] lg:w-[280px] opacity-70 z-0"
+
       />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
-        {/* Eyebrow + Heading */}
-        <div className="text-center mb-12 lg:mb-16">
-          <motion.p
-            data-testid="proximity-eyebrow"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-[#0c2a20]/80 text-sm sm:text-base tracking-wide mb-3"
-          >
-            Proximity Map
-          </motion.p>
-          <motion.h2
-            data-testid="proximity-title"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="font-display text-[#0c2a20] text-3xl sm:text-4xl md:text-5xl lg:text-5xl tracking-tight text-center leading-[1.05] max-w-[80%] md:max-w-none mx-auto"
-          >
-            EVERYTHING WITHIN MINUTES
-          </motion.h2>
-        </div>
+      <div className="relative z-10 max-w-[1280px] mx-auto px-8">
+        {/* Header */}
+        {/* Title */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="text-center mb-6 mt-10"
+                >
+                  <p
+                    className="
+                      font-body
+                     
+                      text-[18px]
+                      lg:text-[24px]
+                      mb-2
+                    "
+                  >
+                    Proximity Map
+                  </p>
+        
+                  <h2
+                    className="
+                      font-title
+                      text-[#0c2a20]
+                      text-[30px]
+                      lg:text-[34px]
+                      font-medium
+                      leading-[1.1]
+                      uppercase
+                    "
+                  >
+                    EVERYTHING WITHIN MINUTES
+                  </h2>
+                </motion.div>
 
-        {/* DESKTOP: 3-column layout (Map | Detail panel | Category pills) */}
-        <div className="hidden lg:grid grid-cols-12 gap-5 items-start ">
-          {/* Map column */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="col-span-6 rounded-[28px] overflow-hidden bg-[#0c2a20] p-6 shadow-[0_20px_50px_-20px_rgba(12,42,32,0.35)] "
+        {/* Desktop Layout */}
+        <div
+          className="
+            hidden
+            lg:grid
+            grid-cols-[650px_350px_205px]
+            gap-[14px]
+            justify-center
+            items-start
+            mt-[40px]
+          "
+        >
+          {/* Map */}
+          <div
+            className="
+              rounded-[20px]
+              overflow-hidden
+              bg-[#0C2A20]
+            "
           >
             <img
               src={mapImg}
-              alt="Proximity map of 38 Daffodils"
-              className="w-full h-auto object-contain rounded-xl"
+              alt="Proximity Map"
+              className="w-full rounded-[10px]"
               draggable={false}
             />
-          </motion.div>
+          </div>
 
-          {/* Detail panel */}
-          <motion.div
-            key={`panel-${active.key}`}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-            className="col-span-3 rounded-[28px] bg-[#0c2a20] p-6 xl:p-7 xl:p-10 shadow-[0_20px_50px_-20px_rgba(12,42,32,0.35)]"
-            data-testid="proximity-detail-panel"
+          {/* Active Category Detail */}
+          <div
+            className="
+              rounded-[20px]
+              bg-[#0C2A20]
+              px-[28px]
+              py-[24px]
+              h-full
+            "
           >
             <AnimatePresence mode="wait">
               <motion.ul
                 key={active.key}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="divide-y divide-[#e2e4b0]/10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
               >
                 {active.items.map(([name, time]) => (
                   <li
                     key={name}
-                    className="flex items-baseline justify-between gap-4 py-2 first:pt-0 last:pb-0"
+                    className="
+                      flex
+                      justify-between
+                      items-start
+                      gap-4
+                      py-[7px]
+                    "
                   >
-                    <span className="text-[#e2e4b0] text-[14px] xl:text-[15px]">
+                    <span className="text-[#E2E4B0] text-[16px]">
                       {name}
                     </span>
-                    <span className="text-[#fed04f] text-[14px] xl:text-[15px] whitespace-nowrap font-medium">
+
+                    <span
+                      className="
+                        text-[#FED04F]
+                        text-[16px]
+                        whitespace-nowrap
+                      "
+                    >
                       {time}
                     </span>
                   </li>
                 ))}
               </motion.ul>
             </AnimatePresence>
-          </motion.div>
+          </div>
 
-          {/* Category pills */}
-          <div className="col-span-3 flex flex-col 2.5">
-            {groups.map((g, gi) => {
+          {/* Category Pills */}
+          <div className="flex flex-col gap-[10px]">
+            {groups.map((g) => {
               const Icon = g.icon;
               const isActive = g.key === activeKey;
+
               return (
-                <motion.button
+                <button
                   key={g.key}
-                  data-testid={`proximity-pill-${g.key}`}
                   onClick={() => setActiveKey(g.key)}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, ease: "easeOut", delay: 0.05 * gi }}
-                  className={`group flex items-center gap-4 rounded-full px-6 py-4 text-left transition-all duration-300 ${isActive
-                      ? "bg-[#0c2a20] text-[#fed04f] border border-[#0c2a20] shadow-[0_10px_25px_-12px_rgba(12,42,32,0.5)]"
-                      : "bg-transparent text-[#0c2a20] border border-[#0c2a20]/60 hover:bg-[#0c2a20]/5"
-                    }`}
+                  className={`
+                    w-[200px]
+                    min-h-[52px]
+                    rounded-full
+                    px-[18px]
+                    py-[10px]
+                    flex
+                    items-center
+                    gap-3
+                    text-left
+                    transition-all
+                    ${isActive
+                      ? "bg-[#0C2A20] text-[#FED04F] border border-[#0C2A20]"
+                      : "bg-transparent text-[#0C2A20] border border-[#0C2A20]"
+                    }
+                  `}
                 >
                   <Icon
-                    className={`w-4 h-4 shrink-0 ${isActive ? "text-[#fed04f]" : "text-[#0c2a20]"
-                      }`}
-                    strokeWidth={1.6}
+                    className="w-[22px] h-[22px] shrink-0"
+                    strokeWidth={1.5}
                   />
-                  <span className="text-[14px] xl:text-[15px] tracking-tight leading-tight">
+
+                  <span className="text-[16px] leading-tight">
                     {g.title}
                   </span>
-                </motion.button>
+                </button>
               );
             })}
           </div>
         </div>
 
-        {/* MOBILE / TABLET layout */}
-        <div className="lg:hidden flex flex-col gap-6">
-          {/* Map */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="rounded-2xl overflow-hidden shadow-[0_15px_40px_-18px_rgba(12,42,32,0.35)]"
-          >
+        {/* Mobile Layout */}
+        <div className="lg:hidden flex flex-col gap-5">
+          <div className="rounded-[20px] overflow-hidden">
             <img
               src={mapImg}
-              alt="Proximity map of 38 Daffodils"
-              className="w-full h-auto object-cover"
-              draggable={false}
+              alt="Proximity Map"
+              className="w-full"
             />
-          </motion.div>
+          </div>
 
-          {/* Active category pill (highlight) */}
-          {(() => {
-            const Icon = active.icon;
-            return (
-              <div
-                data-testid="proximity-active-mobile"
-                className="flex items-center gap-3 rounded-full px-5 py-3 bg-[#0c2a20] text-[#fed04f] self-start"
-              >
-                <Icon className="w-5 h-5 text-[#fed04f]" strokeWidth={1.6} />
-                <span className="text-base tracking-tight">{active.title}</span>
-              </div>
-            );
-          })()}
+          <div className="rounded-[20px] bg-[#0C2A20] p-5">
+            <ul>
+              {active.items.map(([name, time]) => (
+                <li
+                  key={name}
+                  className="
+                    flex
+                    justify-between
+                    py-2
+                  "
+                >
+                  <span className="text-[#E2E4B0] text-sm">
+                    {name}
+                  </span>
 
-          {/* Detail list panel */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`m-panel-${active.key}`}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-              className="rounded-2xl bg-[#0c2a20] p-5 sm:p-6"
-            >
-              <ul className="divide-y divide-[#e2e4b0]/10">
-                {active.items.map(([name, time]) => (
-                  <li
-                    key={name}
-                    className="flex items-baseline justify-between gap-3 py-2.5 first:pt-0 last:pb-0"
-                  >
-                    <span className="text-[#e2e4b0] text-sm sm:text-base">
-                      {name}
-                    </span>
-                    <span className="text-[#fed04f] text-sm sm:text-base whitespace-nowrap font-medium">
-                      {time}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </AnimatePresence>
+                  <span className="text-[#FED04F] text-sm">
+                    {time}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          {/* Other category pills */}
           <div className="flex flex-col gap-3">
-            {groups
-              .filter((g) => g.key !== activeKey)
-              .map((g) => {
-                const Icon = g.icon;
-                return (
-                  <button
-                    key={g.key}
-                    data-testid={`proximity-pill-mobile-${g.key}`}
-                    onClick={() => setActiveKey(g.key)}
-                    className="flex items-center gap-3 rounded-full px-5 py-3 text-left border border-[#0c2a20]/60 text-[#0c2a20] bg-transparent hover:bg-[#0c2a20]/5 transition-colors"
-                  >
-                    <Icon className="w-5 h-5 text-[#0c2a20]" strokeWidth={1.6} />
-                    <span className="text-sm sm:text-base tracking-tight">
-                      {g.title}
-                    </span>
-                  </button>
-                );
-              })}
+            {groups.map((g) => {
+              const Icon = g.icon;
+
+              return (
+                <button
+                  key={g.key}
+                  onClick={() => setActiveKey(g.key)}
+                  className="border border-[#0C2A20] rounded-full px-5 py-3 flex items-center gap-3"
+                >
+                  <Icon className="w-5 h-5" />
+
+                  <span>{g.title}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Footer T&C */}
-        <p className="mt-10 lg:mt-14 text-[11px] sm:text-xs tracking-[0.1em] text-[#0c2a20]/70 text-right">
-          *T &amp; C&apos;s Apply
-        </p>
+        {/* Bottom Right Note */}
+  <p
+    className="
+      absolute
+      bottom-[-40px]
+      right-10
+      text-[11px]
+      text-[#1a1a1a]
+      opacity-70
+    "
+  >
+    *T &amp; C's Apply
+  </p>
       </div>
     </section>
   );

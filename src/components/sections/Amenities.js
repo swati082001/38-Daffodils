@@ -46,77 +46,94 @@ export default function Amenities() {
 
   return (
     <section
-      id="amenities"
-      className="relative py-20 lg:py-28 overflow-hidden"
-      data-testid="amenities-section"
-      style={{
-        backgroundImage: `url(${greenBackground})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="relative max-w-[1300px] mx-auto px-6 lg:px-10">
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="font-display text-5xl sm:text-6xl lg:text-5xl tracking-tight reveal reveal-delay-1 mb-20 text-center"
-        >
-          AMENITIES
-        </motion.h2>
+  id="amenities"
+  className="section-forest grain relative py-12 overflow-hidden"
+  style={{
+    backgroundImage: `url(${greenBackground})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  <div className="max-w-[1300px] mx-auto px-6 lg:px-6 relative z-10">
+    
+    {/* Heading */}
+    <h2 className="section-title text-[36px] md:text-[42px] mb-8 text-cream">
+      AMENITIES
+    </h2>
 
-        <div className="grid lg:grid-cols-[1.55fr_1fr] gap-6 lg:gap-10 items-start">
-          
-          {/* Main Slider */}
-          <div className="relative aspect-[4/3] lg:aspect-[5/4] rounded-2xl overflow-hidden shadow-[0_30px_70px_-30px_rgba(12,42,32,0.4)]">
-            
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.img
-                key={current.key}
-                src={current.img}
-                alt={current.title}
-                custom={direction}
-                initial={{ opacity: 0, scale: 1.05, x: direction * 40 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                exit={{ opacity: 0, x: -direction * 40 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </AnimatePresence>
+    <div className="grid lg:grid-cols-[1.6fr_1fr] gap-10 items-start">
 
-            {/* Caption */}
-            <div className="absolute inset-x-0 bottom-0 p-5 lg:p-7 bg-gradient-to-t from-black/55 to-transparent">
-              <span className="text-white font-display text-2xl lg:text-3xl">
-                {current.title}
-              </span>
-            </div>
+      {/* LEFT - Main Image */}
+      <div className="relative rounded-[22px] overflow-hidden shadow-2xl">
+        
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.img
+            key={current.key}
+            src={current.img}
+            alt={current.title}
+            custom={direction}
+            initial={{ opacity: 0, scale: 1.05, x: direction * 40 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            exit={{ opacity: 0, x: -direction * 40 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full h-[420px] lg:h-[500px] object-cover"
+          />
+        </AnimatePresence>
 
-            {/* Arrows */}
-            <Arrow onClick={prev} left />
-            <Arrow onClick={next} />
-          </div>
-
-          {/* Thumbnails */}
-          <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
-            {slides.map((s, i) => (
-              <Thumb
-                key={s.key}
-                slide={s}
-                isActive={i === active}
-                onClick={() => go(i)}
-              />
-            ))}
-          </div>
+        {/* Bottom Caption Overlay */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+          <span className="font-sans text-white text-2xl md:text-3xl">
+            {current.title}
+          </span>
         </div>
 
-        <p className="mt-10 text-xs italic text-[#e2e4b0]/50 text-center lg:text-left">
-          *T & C's Apply.
-        </p>
+        <Arrow onClick={prev} left />
+        <Arrow onClick={next} />
       </div>
-    </section>
+
+      {/* RIGHT - Thumbnails */}
+      <div className="flex flex-col gap-4">
+        {slides.map((s, i) => (
+          <button
+            key={s.key}
+            onClick={() => go(i)}
+            className={`relative rounded-xl overflow-hidden transition-all duration-500 h-[85px]
+              ${
+                i === active
+                  ? "bg-[#d8d7ad]"
+                  : "bg-black/40 hover:bg-black/30"
+              }`}
+          >
+            {/* Thumbnail Image */}
+            <img
+              src={s.img}
+              alt={s.title}
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
+                i === active ? "opacity-30" : "opacity-100"
+              }`}
+            />
+
+            {/* Text */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span
+                className={`font-body text-sm md:text-base ${
+                  i === active ? "text-[#183B2D]" : "text-white"
+                }`}
+              >
+                {s.title}
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    {/* T&C - Outside container */}
+    <p className="text-right text-sage/60 text-xs mt-12">
+          *T & C's Apply
+        </p>
+  </div>
+</section>
   );
 }
 
@@ -127,13 +144,14 @@ const Arrow = ({ onClick, left }) => (
     onClick={onClick}
     aria-label={left ? "Previous" : "Next"}
     className={`absolute top-1/2 -translate-y-1/2 ${
-      left ? "left-4" : "right-4"
-    } w-10 h-12 lg:w-12 lg:h-14 rounded-full flex items-center justify-center
-    text-[#c69a45] border border-[#c69a45]/70 
-    hover:bg-sage/30 hover:text-white 
-    hover:border-sage/30 transition backdrop-blur-sm bg-white/15`}
+      left ? "left-5" : "right-5"
+    } w-12 h-12 rounded-full flex items-center justify-center
+    border border-[var(--cream)] text-[var(--cream)]
+    bg-black/30 backdrop-blur-md
+    hover:bg-[var(--gold)] hover:text-[var(--forest)]
+    transition-all duration-300`}
   >
-    {left ? <ChevronLeft /> : <ChevronRight />}
+    {left ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
   </button>
 );
 

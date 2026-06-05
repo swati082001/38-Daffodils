@@ -221,59 +221,100 @@ export default function Location() {
           backgroundImage: `url(${locationBackground})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          minHeight: "620px",
         }}
       >
-        <div className="relative px-4 py-8">
+        {/* Dark overlay over image */}
+        <div className="absolute inset-0 bg-[#0c2a20]/35" />
+
+        <div className="relative">
           {locationData.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
                 duration: 0.5,
-                delay: index * 0.1,
+                delay: index * 0.08,
               }}
-              className="relative group py-5"
-              style={{
-                borderBottom:
-                  index < locationData.length - 1
-                    ? "1px solid rgba(226,228,176,0.25)"
-                    : "none",
-              }}
+              className="
+          group
+          relative
+          min-h-[116px]
+          flex
+          items-center
+
+          border-b
+          border-white/10
+
+          bg-[#0c2a20]/20
+          backdrop-blur-[1px]
+
+          hover:bg-[#0c2a20]/55
+          hover:backdrop-blur-md
+
+          transition-all
+          duration-500
+        "
             >
-              <div className="absolute inset-0 -mx-4 bg-[#0c2a20]/0 group-active:bg-[#0c2a20]/85 transition-all duration-500" />
+              {/* Hover dark overlay */}
+              <div
+                className="
+            absolute
+            inset-0
+            bg-[#0c2a20]/0
+            group-hover:bg-[#0c2a20]/30
+            transition-all
+            duration-500
+          "
+              />
 
-              <div className="relative flex items-center gap-4">
-                <img
-                  src={item.icon}
-                  alt={item.title}
-                  className="w-10 h-10 object-contain"
-                  style={{
-                    filter: "brightness(0) invert(1)",
-                  }}
-                />
+              <div className="relative w-full px-10 flex items-center">
+                {/* Left Side */}
+                <div className="w-[42%] flex items-center gap-4">
+                  <img
+                    src={item.icon}
+                    alt={item.title}
+                    className="w-8 h-8 object-contain flex-shrink-0"
+                    style={{
+                      filter:
+                        "brightness(0) saturate(100%) invert(88%) sepia(17%) saturate(352%) hue-rotate(19deg)",
+                    }}
+                  />
 
-                <div className="min-w-[120px]">
-                  <h3 className="font-title text-sage text-[18px] leading-[100%]">
+                  <h3
+                    className="
+                text-[#E2E4B0]
+                text-[18px]
+                leading-[1.15]
+                font-normal
+              "
+                  >
                     {item.title}
                   </h3>
                 </div>
 
-                <div className="flex-1">
-                  {item.details.map((detail, idx) => (
-                    <p
-                      key={idx}
-                      className="
-                        font-body
-                        text-sage
-                        text-[12px]
-                        leading-[125%]
-                      "
-                    >
-                      {detail}
-                    </p>
-                  ))}
+                {/* Right Side */}
+                <div className="w-[58%] pl-10">
+                  <ul className="space-y-1">
+                    {item.details.map((detail, idx) => (
+                      <li
+                        key={idx}
+                        className="
+                    text-[#E2E4B0]
+                    text-[12px]
+                    leading-[1.35]
+                    opacity-0
+                    group-hover:opacity-100
+                    transition-all
+                    duration-500
+                  "
+                      >
+                        • {detail}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </motion.div>

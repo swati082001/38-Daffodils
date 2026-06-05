@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+
 import guaranteedMonthlyRental from "../../assets/icons/Guaranteed Monthly Rental.png";
 import highDemandAsset from "../../assets/icons/High Demand Asset.png";
 import longTermLease from "../../assets/icons/Long-Term Lease.png";
@@ -8,6 +9,7 @@ import zeroManagementHassle from "../../assets/icons/Zero Management Hassle.png"
 import propertyValueAppreciation from "../../assets/icons/Property Value Appreciation.png";
 import zeroMaintenanceCost from "../../assets/icons/Zero Maintenance Cost.png";
 import stablePredictableReturns from "../../assets/icons/Stable & Predictable Returns.png";
+
 import Flower from "../../assets/background-images/flower-right.png";
 
 const reasons = [
@@ -49,43 +51,91 @@ export default function InvestmentCase() {
   return (
     <section
       id="about"
-      className="relative section-cream py-16 lg:py-20 overflow-hidden"
+      className="relative section-cream py-12 lg:py-20 overflow-hidden"
       data-testid="investment-case-section"
-      style={{
-        backgroundImage: `url(${Flower})`,
-        backgroundPosition: "right center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
-      }}
     >
-      <div className="relative max-w-[1300px] mx-auto px-6 lg:px-10">
+      {/* Mobile Flower */}
+      <img
+        src={Flower}
+        alt=""
+        aria-hidden="true"
+        className="
+          absolute
+          left-0
+          top-0
+          h-[300px]
+          w-auto
+          opacity-15
+          lg:hidden
+          pointer-events-none
+          select-none
+        "
+      />
+
+      {/* Desktop Flower (unchanged) */}
+      <div
+        className="hidden lg:block absolute inset-0"
+        style={{
+          backgroundImage: `url(${Flower})`,
+          backgroundPosition: "right center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+        }}
+      />
+
+      <div className="relative max-w-[1300px] mx-auto px-4 lg:px-10">
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 lg:mb-16"
         >
-          <h1 className="font-title text-[36px] font-medium uppercase">
-            PRELEASED STUDIO APARTMENTS
+          <h1
+            className="
+              font-title
+              text-[22px]
+              leading-[1.15]
+              uppercase
+              font-medium
+              text-[#1D1D1B]
+
+              lg:text-[36px]
+            "
+          >
+            PRELEASED STUDIO
+            <br />
+            APARTMENTS
           </h1>
 
           <p
             className="
-      font-sans
-      text-[24px]
-      font-normal
-      leading-[100%]
-      text-center
-      text-[#0c2a20]
-      mt-3
-    "
+              font-sans
+              text-[14px]
+              font-normal
+              text-[#0c2a20]
+              mt-2
+
+              lg:text-[24px]
+              lg:mt-3
+            "
           >
             Are A Better Growth Asset
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+        {/* Cards */}
+        <div
+          className="
+            grid
+            grid-cols-2
+            gap-4
+
+            lg:grid-cols-4
+            lg:gap-5
+          "
+        >
           {reasons.map((r, i) => {
             return (
               <motion.div
@@ -103,65 +153,91 @@ export default function InvestmentCase() {
                   transition: { duration: 0.25 },
                 }}
                 className="
-                group
-                relative
-                w-full
-                max-w-[283px]
-                h-[103px]
-                rounded-[20px]
-                border
-                border-[#F8F8EF]
-                bg-gradient-to-b
-                from-[#F8F8F0]
-                to-[#EFEEDB]
-                px-6
-                py-5
-                overflow-hidden
-                transition-all
-                duration-300
-                hover:shadow-lg
-              "
+                  group
+                  relative
+                  w-full
+
+                  h-[82px]
+                  lg:h-[103px]
+
+                  rounded-[16px]
+                  lg:rounded-[20px]
+
+                  border
+                  border-[#F8F8EF]
+
+                  bg-gradient-to-b
+                  from-[#F8F8F0]
+                  to-[#EFEEDB]
+
+                  px-4
+                  py-3
+
+                  lg:px-6
+                  lg:py-5
+
+                  overflow-hidden
+                  transition-all
+                  duration-300
+                  hover:shadow-lg
+                "
                 data-testid={`reason-card-${i + 1}`}
               >
-                {/* Soft green glow behind text */}
+                {/* Glow */}
                 <div
                   className="
-                  absolute
-                  right-0
-                  top-1/2
-                  -translate-y-1/2
-                  w-[140px]
-                  h-[80px]
-                  bg-[#0c2a20]
-                  opacity-[0.05]
-                  blur-3xl
-                  rounded-full
-                  pointer-events-none
-                "
+                    absolute
+                    right-0
+                    top-1/2
+                    -translate-y-1/2
+                    w-[140px]
+                    h-[80px]
+                    bg-[#0c2a20]
+                    opacity-[0.05]
+                    blur-3xl
+                    rounded-full
+                    pointer-events-none
+                  "
                 />
 
-                <div className="relative flex items-center gap-4 h-full">
+                <div className="relative flex items-center gap-3 lg:gap-4 h-full">
                   {/* Icon */}
                   <div
                     className="
-                    w-[52px]
-                    h-[52px]
-                    rounded-[12px]
-                    bg-[#0c2a20]
-                    flex
-                    items-center
-                    justify-center
-                    flex-shrink-0
-                    transition-all
-                    duration-300
-                    group-hover:scale-125
-                    group-hover:-translate-y-1
-                  "
+                      w-[44px]
+                      h-[44px]
+
+                      lg:w-[52px]
+                      lg:h-[52px]
+
+                      rounded-[10px]
+                      lg:rounded-[12px]
+
+                      bg-[#0c2a20]
+                      flex
+                      items-center
+                      justify-center
+                      flex-shrink-0
+
+                      transition-all
+                      duration-300
+
+                      group-hover:scale-125
+                      group-hover:-translate-y-1
+                    "
                   >
                     <img
                       src={r.icon}
                       alt={r.title}
-                      className="w-6 h-6 object-contain"
+                      className="
+                        w-5
+                        h-5
+
+                        lg:w-6
+                        lg:h-6
+
+                        object-contain
+                      "
                       style={{ filter: "brightness(0) invert(1)" }}
                     />
                   </div>
@@ -169,14 +245,18 @@ export default function InvestmentCase() {
                   {/* Text */}
                   <h3
                     className="
-                    font-sans
-                    text-[16px]
-                    font-medium
-                    leading-[130%]
-                    text-[#1D1D1B]
-                    relative
-                    z-10
-                  "
+                      font-sans
+                      text-[11px]
+                      leading-[1.3]
+                      font-medium
+                      text-[#1D1D1B]
+
+                      lg:text-[16px]
+                      lg:leading-[130%]
+
+                      relative
+                      z-10
+                    "
                   >
                     {r.title}
                   </h3>

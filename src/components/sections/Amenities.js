@@ -46,94 +46,219 @@ export default function Amenities() {
 
   return (
     <section
-  id="amenities"
-  className="section-forest grain relative py-12 overflow-hidden"
-  style={{
-    backgroundImage: `url(${greenBackground})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
-  <div className="max-w-[1300px] mx-auto px-6 lg:px-6 relative z-10">
-    
-    {/* Heading */}
-    <h2 className="section-title text-[36px] md:text-[42px] mb-8 text-cream">
-      AMENITIES
-    </h2>
-
-    <div className="grid lg:grid-cols-[1.6fr_1fr] gap-10 items-start">
-
-      {/* LEFT - Main Image */}
-      <div className="relative rounded-[22px] overflow-hidden shadow-2xl">
-        
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.img
-            key={current.key}
-            src={current.img}
-            alt={current.title}
-            custom={direction}
-            initial={{ opacity: 0, scale: 1.05, x: direction * 40 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            exit={{ opacity: 0, x: -direction * 40 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full h-[420px] lg:h-[500px] object-cover"
-          />
-        </AnimatePresence>
-
-        {/* Bottom Caption Overlay */}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-          <span className="font-sans text-white text-2xl md:text-3xl">
-            {current.title}
-          </span>
-        </div>
-
-        <Arrow onClick={prev} left />
-        <Arrow onClick={next} />
-      </div>
-
-      {/* RIGHT - Thumbnails */}
-      <div className="flex flex-col gap-4">
-        {slides.map((s, i) => (
-          <button
-            key={s.key}
-            onClick={() => go(i)}
-            className={`relative rounded-xl overflow-hidden transition-all duration-500 h-[85px]
-              ${
-                i === active
-                  ? "bg-[#d8d7ad]"
-                  : "bg-black/40 hover:bg-black/30"
-              }`}
-          >
-            {/* Thumbnail Image */}
-            <img
-              src={s.img}
-              alt={s.title}
-              className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
-                i === active ? "opacity-30" : "opacity-100"
-              }`}
-            />
-
-            {/* Text */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span
-                className={`font-body text-sm md:text-base ${
-                  i === active ? "text-[#183B2D]" : "text-white"
-                }`}
-              >
-                {s.title}
+    id="amenities"
+    className="section-forest grain relative py-8 lg:py-12 overflow-hidden"
+    style={{
+      backgroundImage: `url(${greenBackground})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  >
+    <div className="max-w-[1300px] mx-auto px-4 lg:px-6 relative z-10">
+  
+      {/* ================= DESKTOP (UNCHANGED) ================= */}
+      <div className="hidden lg:block">
+        <h2 className="section-title text-[36px] md:text-[42px] mb-8 text-cream">
+          AMENITIES
+        </h2>
+  
+        <div className="grid lg:grid-cols-[1.6fr_1fr] gap-10 items-start">
+          {/* LEFT */}
+          <div className="relative rounded-[22px] overflow-hidden shadow-2xl">
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.img
+                key={current.key}
+                src={current.img}
+                alt={current.title}
+                custom={direction}
+                initial={{ opacity: 0, scale: 1.05, x: direction * 40 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                exit={{ opacity: 0, x: -direction * 40 }}
+                transition={{ duration: 0.7 }}
+                className="w-full h-[420px] lg:h-[500px] object-cover"
+              />
+            </AnimatePresence>
+  
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+              <span className="font-sans text-white text-2xl md:text-3xl">
+                {current.title}
               </span>
             </div>
-          </button>
-        ))}
+  
+            <Arrow onClick={prev} left />
+            <Arrow onClick={next} />
+          </div>
+  
+          {/* RIGHT */}
+          <div className="flex flex-col gap-4">
+            {slides.map((s, i) => (
+              <button
+                key={s.key}
+                onClick={() => go(i)}
+                className={`relative rounded-xl overflow-hidden transition-all duration-500 h-[85px]
+                  ${
+                    i === active
+                      ? "bg-[#d8d7ad]"
+                      : "bg-black/40 hover:bg-black/30"
+                  }`}
+              >
+                <img
+                  src={s.img}
+                  alt={s.title}
+                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
+                    i === active ? "opacity-30" : "opacity-100"
+                  }`}
+                />
+  
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span
+                    className={`font-body text-sm md:text-base ${
+                      i === active ? "text-[#183B2D]" : "text-white"
+                    }`}
+                  >
+                    {s.title}
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-
-    {/* T&C - Outside container */}
-    <p className="text-right text-sage/60 text-xs mt-12">
+  
+      {/* ================= MOBILE ================= */}
+      <div className="lg:hidden">
+        <h2
+          className="
+            text-center
+            text-sage
+            font-title
+            text-[24px]
+            leading-none
+            mb-8
+          "
+        >
+          AMENITIES
+        </h2>
+  
+        <div className="relative flex items-center justify-center">
+          
+          {/* Left Arrow */}
+          <button
+            onClick={prev}
+            className="
+              absolute
+              left-0
+              z-20
+              w-9
+              h-9
+              rounded-full
+              border
+              border-[#E2E4B0]
+              flex
+              items-center
+              justify-center
+              text-[#E2E4B0]
+              bg-[#0c2a20]/40
+              backdrop-blur-sm
+            "
+          >
+            <ChevronLeft size={16} />
+          </button>
+  
+          {/* Slider Card */}
+          <div
+            className="
+              relative
+              w-[78%]
+              rounded-[20px]
+              overflow-hidden
+            "
+          >
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={current.key}
+                src={current.img}
+                alt={current.title}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.45 }}
+                className="
+                  w-full
+                  h-[220px]
+                  object-cover
+                "
+              />
+            </AnimatePresence>
+  
+            {/* Caption */}
+            <div
+              className="
+                absolute
+                left-4
+                bottom-4
+                text-white
+                text-[16px]
+                font-body
+              "
+            >
+              {current.title}
+            </div>
+          </div>
+  
+          {/* Right Arrow */}
+          <button
+            onClick={next}
+            className="
+              absolute
+              right-0
+              z-20
+              w-9
+              h-9
+              rounded-full
+              border
+              border-[#E2E4B0]
+              flex
+              items-center
+              justify-center
+              text-[#E2E4B0]
+              bg-[#0c2a20]/40
+              backdrop-blur-sm
+            "
+          >
+            <ChevronRight size={16} />
+          </button>
+        </div>
+  
+        {/* Dots */}
+        <div className="flex justify-center gap-3 mt-4">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => go(i)}
+              className={`
+                w-2.5
+                h-2.5
+                rounded-full
+                transition-all
+                duration-300
+                ${
+                  i === active
+                    ? "bg-[#FED04F]"
+                    : "bg-white/80"
+                }
+              `}
+            />
+          ))}
+        </div>
+  
+        {/* T&C */}
+        <p className="text-right text-sage/60 text-[10px] mt-6">
           *T & C's Apply
         </p>
-  </div>
-</section>
+      </div>
+    </div>
+  </section>
   );
 }
 

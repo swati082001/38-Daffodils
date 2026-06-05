@@ -257,88 +257,193 @@ export default function Enquiry() {
           </motion.div>
         </div>
 
-        {/* Mobile Layout */}
-        <div className="lg:hidden">
-          <div className="rounded-[24px] overflow-hidden mb-6">
-            <img
-              src={enquiryImage}
-              alt="38 Daffodils Building"
-              className="w-full h-auto"
+{/* Mobile Layout */}
+<div className="lg:hidden flex justify-center px-2">
+  <div
+    className="
+      bg-[#D9DCB1]
+      rounded-[24px]
+      w-full
+      max-w-[360px]
+      px-3
+      pt-4
+      pb-4
+    "
+  >
+    <h2
+      className="
+        text-[#183B2D]
+        text-[20px]
+        font-semibold
+        mb-3
+      "
+    >
+      ENQUIRE NOW
+    </h2>
+
+    <p
+      className="
+        text-[#183B2D]
+        text-[12px]
+        leading-[1.4]
+        mb-3
+      "
+    >
+      Please enter the details below to get in touch with us!
+    </p>
+
+    {submitted ? (
+      <div className="flex flex-col items-center justify-center py-2">
+        <CheckCircle2
+          size={54}
+          strokeWidth={1.5}
+          className="text-[#183B2D] mb-3"
+        />
+
+        <h3 className="text-[#183B2D] text-xl font-semibold mb-2">
+          Thank You!
+        </h3>
+
+        <p className="text-[#183B2D]/70 text-center text-sm">
+          We'll get in touch with you shortly.
+        </p>
+      </div>
+    ) : (
+      <form
+        onSubmit={onSubmit}
+        className="flex flex-col gap-4"
+      >
+        {/* Name */}
+        <input
+          required
+          type="text"
+          placeholder="Name"
+          value={form.name}
+          onChange={(e) =>
+            setForm({ ...form, name: e.target.value })
+          }
+          className="
+            h-[52px]
+            rounded-[12px]
+            border
+            border-[#183B2D]
+            bg-transparent
+            px-4
+            text-[16px]
+            text-[#183B2D]
+            placeholder:text-[#6F7D74]
+            outline-none
+          "
+        />
+
+        {/* Phone */}
+        <div
+          className="
+            h-[52px]
+            rounded-[12px]
+            border
+            border-[#183B2D]
+            flex
+            items-center
+            overflow-hidden
+          "
+        >
+          <div className="flex items-center gap-1 px-4">
+            <span className="text-[22px]">🇮🇳</span>
+
+            <ChevronDown
+              size={14}
+              className="text-[#183B2D]"
             />
           </div>
 
-          <div className="bg-[#D9DCB1] rounded-[24px] p-6">
-            <h2 className="text-[#183B2D] text-[24px] font-semibold mb-3">
-              ENQUIRE NOW
-            </h2>
-
-            <p className="text-[#183B2D] mb-5">
-              Please enter the details below to get in touch with us!
-            </p>
-
-            <form
-              onSubmit={onSubmit}
-              className="flex flex-col gap-4"
-            >
-              <input
-                required
-                type="text"
-                placeholder="Name"
-                value={form.name}
-                onChange={(e) =>
-                  setForm({ ...form, name: e.target.value })
-                }
-                className={fieldClass}
-              />
-
-              <input
-                required
-                type="tel"
-                placeholder="Phone"
-                value={form.phone}
-                onChange={(e) =>
-                  setForm({ ...form, phone: e.target.value })
-                }
-                className={fieldClass}
-              />
-
-              <input
-                required
-                type="email"
-                placeholder="Email"
-                value={form.email}
-                onChange={(e) =>
-                  setForm({ ...form, email: e.target.value })
-                }
-                className={fieldClass}
-              />
-
-              <input
-                type="text"
-                placeholder="Comments"
-                value={form.msg}
-                onChange={(e) =>
-                  setForm({ ...form, msg: e.target.value })
-                }
-                className={fieldClass}
-              />
-
-              <button
-                type="submit"
-                className="
-                  h-[54px]
-                  rounded-[12px]
-                  bg-[#143B31]
-                  text-[#D9DCB1]
-                  text-[18px]
-                  font-semibold
-                "
-              >
-                ENQUIRE NOW
-              </button>
-            </form>
-          </div>
+          <input
+            required
+            type="tel"
+            placeholder="Phone"
+            value={form.phone}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                phone: e.target.value,
+              })
+            }
+            className="
+              flex-1
+              bg-transparent
+              outline-none
+              text-[#183B2D]
+              placeholder:text-[#6F7D74]
+              text-[16px]
+              pr-4
+            "
+          />
         </div>
+
+        {/* Email */}
+        <input
+          required
+          type="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={(e) =>
+            setForm({ ...form, email: e.target.value })
+          }
+          className="
+            h-[52px]
+            rounded-[12px]
+            border
+            border-[#183B2D]
+            bg-transparent
+            px-4
+            text-[16px]
+            text-[#183B2D]
+            placeholder:text-[#6F7D74]
+            outline-none
+          "
+        />
+
+        {/* Comments */}
+        <input
+          type="text"
+          placeholder="Comments"
+          value={form.msg}
+          onChange={(e) =>
+            setForm({ ...form, msg: e.target.value })
+          }
+          className="
+            h-[52px]
+            rounded-[12px]
+            border
+            border-[#183B2D]
+            bg-transparent
+            px-4
+            text-[16px]
+            text-[#183B2D]
+            placeholder:text-[#6F7D74]
+            outline-none
+          "
+        />
+
+        {/* Button */}
+        <button
+          type="submit"
+          className="
+            h-[56px]
+            rounded-[12px]
+            bg-[#143B31]
+            text-[#D9DCB1]
+            text-[18px]
+            font-semibold
+            mt-1
+          "
+        >
+          ENQUIRE NOW
+        </button>
+      </form>
+    )}
+  </div>
+</div>
       </div>
     </section>
   );

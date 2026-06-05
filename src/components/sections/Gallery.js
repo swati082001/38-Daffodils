@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import React, { useState, useEffect, useCallback } from "react";
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import galleryimage1 from "../../assets/E2.jpg";
@@ -32,13 +32,18 @@ export default function Gallery() {
 
   const len = GALLERY_IMAGES.length;
 
-  const next = () => setIdx((prev) => (prev + 1) % len);
-  const prev = () => setIdx((prev) => (prev - 1 + len) % len);
+  const next = useCallback(() => {
+    setIdx((prev) => (prev + 1) % len);
+  }, [len]);
+
+  const prev = useCallback(() => {
+    setIdx((prev) => (prev - 1 + len) % len);
+  }, [len]);
 
   useEffect(() => {
     const timer = setInterval(next, AUTO_MS);
     return () => clearInterval(timer);
-  }, []);
+  }, [next]);
 
   const first = GALLERY_IMAGES[idx];
   const second = GALLERY_IMAGES[(idx + 1) % len];
@@ -46,7 +51,14 @@ export default function Gallery() {
   return (
     <section
       id="gallery"
-      className="relative overflow-hidden pt-[24px] pb-[35px]"
+      className="
+        relative
+        overflow-hidden
+        pt-8
+        pb-8
+        lg:pt-[24px]
+        lg:pb-[35px]
+      "
       style={{
         backgroundImage: `url(${greenBackground})`,
         backgroundSize: "cover",
@@ -58,43 +70,44 @@ export default function Gallery() {
       <h2
         className="
           font-title
-          text-[48px]
-          leading-none
           text-[#E2E4B0]
+          text-[28px]
+          lg:text-[48px]
+          leading-none
           text-center
           font-normal
-          mb-[50px]
+          mb-8
+          lg:mb-[50px]
         "
       >
         GALLERY
       </h2>
 
-      {/* Gallery Area */}
-      <div className="relative w-full px-[140px]">
-        {/* Left Arrow */}
+      {/* ================= DESKTOP (UNCHANGED) ================= */}
+      <div className="hidden lg:block relative w-full px-[140px]">
         {/* Left Arrow */}
         <button
           onClick={prev}
           aria-label="Previous"
           className="
-    hidden lg:flex
-    absolute
-    left-[120px]
-    top-1/2
-    -translate-y-1/2
-    z-20
-    w-[68px]
-    h-[68px]
-    rounded-full
-    border
-    border-[#E2E4B0]
-    items-center
-    justify-center
-    text-[#E2E4B0]
-    hover:bg-[#E2E4B0]/10
-    transition-all
-    duration-300
-  "
+            absolute
+            left-[120px]
+            top-1/2
+            -translate-y-1/2
+            z-20
+            w-[68px]
+            h-[68px]
+            rounded-full
+            border
+            border-[#E2E4B0]
+            flex
+            items-center
+            justify-center
+            text-[#E2E4B0]
+            hover:bg-[#E2E4B0]/10
+            transition-all
+            duration-300
+          "
         >
           <ArrowLeft size={30} strokeWidth={1.5} />
         </button>
@@ -104,30 +117,30 @@ export default function Gallery() {
           onClick={next}
           aria-label="Next"
           className="
-    hidden lg:flex
-    absolute
-    right-[120px]
-    top-1/2
-    -translate-y-1/2
-    z-20
-    w-[68px]
-    h-[68px]
-    rounded-full
-    border
-    border-[#E2E4B0]
-    items-center
-    justify-center
-    text-[#E2E4B0]
-    hover:bg-[#E2E4B0]/10
-    transition-all
-    duration-300
-  "
+            absolute
+            right-[120px]
+            top-1/2
+            -translate-y-1/2
+            z-20
+            w-[68px]
+            h-[68px]
+            rounded-full
+            border
+            border-[#E2E4B0]
+            flex
+            items-center
+            justify-center
+            text-[#E2E4B0]
+            hover:bg-[#E2E4B0]/10
+            transition-all
+            duration-300
+          "
         >
           <ArrowRight size={30} strokeWidth={1.5} />
         </button>
 
-        {/* Desktop Images */}
-        <div className="hidden lg:flex justify-center gap-[40px]">
+        {/* Images */}
+        <div className="flex justify-center gap-[40px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={`left-${idx}`}
@@ -177,54 +190,6 @@ export default function Gallery() {
           </AnimatePresence>
         </div>
 
-        {/* Mobile */}
-        <div className="lg:hidden px-4">
-          <div className="rounded-[10px] overflow-hidden">
-            <img
-              src={first}
-              alt="Gallery"
-              className="w-full aspect-[4/3] object-cover"
-              draggable={false}
-            />
-          </div>
-
-          <div className="flex justify-center gap-4 mt-6">
-            <button
-              onClick={prev}
-              className="
-                w-[52px]
-                h-[52px]
-                rounded-full
-                border
-                border-[#E2E4B0]
-                flex
-                items-center
-                justify-center
-                text-[#E2E4B0]
-              "
-            >
-              <ArrowLeft size={22} />
-            </button>
-
-            <button
-              onClick={next}
-              className="
-                w-[52px]
-                h-[52px]
-                rounded-full
-                border
-                border-[#E2E4B0]
-                flex
-                items-center
-                justify-center
-                text-[#E2E4B0]
-              "
-            >
-              <ArrowRight size={22} />
-            </button>
-          </div>
-        </div>
-
         {/* Footer Note */}
         <p
           className="
@@ -234,6 +199,118 @@ export default function Gallery() {
             text-[11px]
             text-[#E2E4B0]
             opacity-80
+          "
+        >
+          Artistic Impression | *T &amp; C&apos;s Apply
+        </p>
+      </div>
+
+      {/* ================= MOBILE (MATCHES DESIGN) ================= */}
+      <div className="lg:hidden px-4">
+        <div className="relative mx-auto w-full max-w-[320px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="
+  relative
+  h-[250px]
+  overflow-hidden
+  rounded-[18px]
+"
+            >
+              <img
+                src={first}
+                alt="Gallery"
+                className="w-full h-full object-cover"
+                draggable={false}
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Left Arrow */}
+          <button
+            onClick={prev}
+            aria-label="Previous"
+            className="
+              absolute
+              left-[-18px]
+              top-1/2
+              -translate-y-1/2
+              w-[42px]
+              h-[42px]
+              rounded-full
+              border
+              border-[#E2E4B0]
+              flex
+              items-center
+              justify-center
+              text-[#E2E4B0]
+              bg-[#0c2a20]/40
+              backdrop-blur-sm
+            "
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={next}
+            aria-label="Next"
+            className="
+              absolute
+              right-[-18px]
+              top-1/2
+              -translate-y-1/2
+              w-[42px]
+              h-[42px]
+              rounded-full
+              border
+              border-[#E2E4B0]
+              flex
+              items-center
+              justify-center
+              text-[#E2E4B0]
+              bg-[#0c2a20]/40
+              backdrop-blur-sm
+            "
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-3 mt-5">
+          {GALLERY_IMAGES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIdx(i)}
+              className={`
+                w-[10px]
+                h-[10px]
+                rounded-full
+                transition-all
+                duration-300
+                ${i === idx
+                  ? "bg-[#FED04F]"
+                  : "bg-[#E2E4B0]"
+                }
+              `}
+            />
+          ))}
+        </div>
+
+        {/* Footer Note */}
+        <p
+          className="
+            text-right
+            text-[#E2E4B0]/80
+            text-[10px]
+            mt-6
+            pr-1
           "
         >
           Artistic Impression | *T &amp; C&apos;s Apply

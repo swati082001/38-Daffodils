@@ -48,7 +48,7 @@ function Section1() {
           alt="Flower"
           className="
             absolute
-            top-4
+            top-[40px]
             right-4
             w-10 h-10
             sm:w-12 sm:h-12
@@ -104,6 +104,7 @@ function Section1() {
               leading-[1.15]
               uppercase
               max-w-[320px]
+              lg:max-w-[520px]
               mx-auto
             "
           >
@@ -379,7 +380,7 @@ function Section2() {
         md:w-[1000px]
         lg:w-[1500px]
         mx-auto
-        h-[250px]
+        h-[320px]
         sm:h-[520px]
         md:h-[650px]
         lg:h-auto

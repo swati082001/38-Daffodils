@@ -32,8 +32,7 @@ const Hero = () => {
             loading="eager"
           />
 
-          {/* Bottom Fade */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-forest" />
+      
         </div>
       </div>
     </section>

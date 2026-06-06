@@ -358,7 +358,7 @@ export default function Proximity() {
       absolute
       bottom-[-40px]
       right-10
-      text-[11px]
+      text-[8px]
       text-[#1a1a1a]
       opacity-70
     "

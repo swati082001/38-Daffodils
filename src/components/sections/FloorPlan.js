@@ -191,7 +191,7 @@ export default function FloorPlan() {
           right-4
           lg:bottom-8
           lg:right-20
-          text-[10px]
+          text-[8px]
           lg:text-[11px]
           text-[#1a1a1a]
           opacity-70

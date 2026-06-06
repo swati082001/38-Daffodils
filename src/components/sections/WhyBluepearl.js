@@ -237,7 +237,7 @@ export default function WhyBluepearl() {
               lg:right-[-40px]
               bottom-0
               lg:bottom-[-2px]
-              text-[11px]
+              text-[8px]
               text-[#0C2A20]
               opacity-70
             "

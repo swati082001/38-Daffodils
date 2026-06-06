@@ -308,7 +308,7 @@ export default function Gallery() {
           className="
             text-right
             text-[#E2E4B0]/80
-            text-[10px]
+            text-[8px]
             mt-6
             pr-1
           "

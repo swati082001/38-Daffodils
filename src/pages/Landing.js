@@ -21,9 +21,7 @@ export default function Landing() {
       className="relative bg-forest text-sage min-h-screen overflow-hidden"
     >
       <Navbar />
-
       <FloatingContactButton />
-
       <Hero />
       <InvestmentCase />
       <Location />

@@ -323,29 +323,38 @@ function Section1() {
 
         {/* Notes */}
         <p
-          className="
-            font-body
-            text-center
-            text-[#0c2a20]
-            text-[10px]
-            leading-[1.4]
-            mt-5
-            lg:mt-50
-            px-6
-            max-w-[320px]
-            mx-auto
-          "
-        >
-          Note: The co-living service operator is legally obligated to pay the
-          rent directly to the property owners
-        </p>
+  className="
+    font-body
+    text-center
+    text-[#0c2a20]
+
+    text-[6px]
+    sm:text-[9px]
+    lg:text-[10px]
+
+    leading-[1.35]
+    lg:leading-[1.4]
+
+    mt-5
+    lg:mt-50
+
+    px-6
+    max-w-[380px]
+    lg:max-w-[320px]
+
+    mx-auto
+  "
+>
+  Note: The co-living service operator is legally obligated to pay the
+  rent directly to the property owners
+</p>
 
         <p
           className="
             font-body
             text-right
             text-[#0c2a20]/70
-            text-[10px]
+            text-[8px]
             lg:text-xs
             mt-1
             pr-4
@@ -370,7 +379,7 @@ function Section2() {
         md:w-[1000px]
         lg:w-[1500px]
         mx-auto
-        h-[200px]
+        h-[250px]
         sm:h-[520px]
         md:h-[650px]
         lg:h-auto
@@ -682,7 +691,7 @@ function Section3() {
         </div>
 
         {/* T&C */}
-        <p className="text-right text-sage/60 text-[10px] lg:text-xs mt-8 lg:mt-12">
+        <p className="text-right text-sage/60 text-[8px] lg:text-xs mt-8 lg:mt-12">
           *T &amp; C&apos;s Apply
         </p>
       </div>

@@ -253,7 +253,7 @@ export default function Amenities() {
         </div>
   
         {/* T&C */}
-        <p className="text-right text-sage/60 text-[10px] mt-6">
+        <p className="text-right text-sage/60 text-[8px] mt-6">
           *T & C's Apply
         </p>
       </div>

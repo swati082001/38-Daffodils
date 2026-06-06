@@ -221,7 +221,7 @@ export default function Location() {
           backgroundImage: `url(${locationBackground})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "620px",
+          minHeight: "580px",
         }}
       >
         {/* Dark overlay over image */}

@@ -158,8 +158,7 @@ export default function Footer() {
         <div className="bg-white">
           <div className="max-w-[1200px] mx-auto px-4 py-4 text-center">
             <p className="text-[8px] leading-[1] text-[#575757]">
-              Disclaimer: All representations are believed to be correct and
-              envisaged by the developer/promoter...
+            Disclaimer: All representations are believed to be correct and envisaged by the developer/promoter. All art renderings, illustrations, photographs and pictures contained in this brochure are on artist's impression only and the same should not be construed to be the final images/views of the final project. The printed material does not constitute a contract/offer of any type between the developer/promoter and the purchaser and shall supersede all statements, documents or representations made prior to signing of such sale and purchase agreement. Terms & Conditions apply.
             </p>
 
             <p className="text-[10px] mt-2 text-[#444]">

@@ -13,6 +13,7 @@ import variant2 from "../../assets/background-images/variant2.png";
 // Section 3
 import greenBackground from "../../assets/background-images/green-bg.png";
 import lightGreenMovingFlower from "../../assets/background-images/Light Green Moving Flower Icon.svg";
+import mobilevariant from "../../assets/background-images/mobilevariant.png"
 
 export default function WealthApproach() {
   return (
@@ -329,9 +330,9 @@ function Section1() {
     text-center
     text-[#0c2a20]
 
-    text-[6px]
-    sm:text-[9px]
-    lg:text-[10px]
+    text-[8px]
+    sm:text-[8px]
+    lg:text-[12px]
 
     leading-[1.35]
     lg:leading-[1.4]
@@ -340,8 +341,9 @@ function Section1() {
     lg:mt-50
 
     px-6
-    max-w-[380px]
-    lg:max-w-[320px]
+    max-w-[320px]
+    md:max-w-[380px]
+    lg:max-w-[800px]
 
     mx-auto
   "
@@ -370,6 +372,7 @@ function Section1() {
 }
 
 /* ============ SECTION 2: ROI ============ */
+
 function Section2() {
   return (
     <div
@@ -378,48 +381,61 @@ function Section2() {
         relative
         sm:w-[500px]
         md:w-[1000px]
-        lg:w-[1500px]
+        lg:w-[1450px]
         mx-auto
-        h-[320px]
+        h-[300px]
         sm:h-[520px]
         md:h-[650px]
         lg:h-auto
         overflow-hidden
       "
     >
-      {/* Default */}
+      {/* Mobile Image Only */}
+      <img
+        src={mobilevariant}
+        alt="ROI Mobile"
+        className="
+          block
+          lg:hidden
+          w-full
+          h-full
+          object-cover
+        "
+      />
+
+      {/* Desktop Default */}
       <img
         src={variant1}
         alt="ROI"
         className="
-    w-full
-    h-full
-    object-cover
-    object-center
-    lg:object-cover
-    transition-opacity
-    duration-500
-    group-hover:opacity-0
-  "
+          hidden
+          lg:block
+          w-full
+          h-full
+          object-cover
+          transition-opacity
+          duration-500
+          group-hover:opacity-0
+        "
       />
 
-      {/* Hover */}
+      {/* Desktop Hover */}
       <img
         src={variant2}
         alt="ROI Hover"
         className="
-    absolute
-    inset-0
-    w-full
-    h-full
-    object-cover
-    object-center
-    lg:object-cover
-    opacity-0
-    transition-opacity
-    duration-500
-    group-hover:opacity-100
-  "
+          hidden
+          lg:block
+          absolute
+          inset-0
+          w-full
+          h-full
+          object-cover
+          opacity-0
+          transition-opacity
+          duration-500
+          group-hover:opacity-100
+        "
       />
     </div>
   );

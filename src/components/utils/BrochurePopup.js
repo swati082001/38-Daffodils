@@ -7,22 +7,27 @@ export default function BrochurePopup() {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 backdrop-blur-sm px-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 backdrop-blur-sm px-3 sm:px-4">
       {/* Modal */}
       <div
         className="
           relative
-          w-[92vw]
-          sm:w-[80vw]
-          md:w-[60vw]
-          lg:w-[34vw]
-          xl:w-[30vw]
-          max-w-[520px]
-          min-w-[420px]
+
+          w-full
+          max-w-[360px]
+          sm:max-w-[420px]
+          md:max-w-[520px]
+
           bg-[#14382D]
-          rounded-[28px]
-          px-[30px]
-          py-[28px]
+
+          rounded-[22px]
+          sm:rounded-[28px]
+
+          px-5
+          py-5
+          sm:px-[30px]
+          sm:py-[28px]
+
           shadow-[0_20px_60px_rgba(0,0,0,0.35)]
         "
       >
@@ -31,21 +36,29 @@ export default function BrochurePopup() {
           onClick={() => setOpen(false)}
           className="
             absolute
-            top-4
-            right-4
-            w-10
-            h-10
+            top-3
+            right-3
+            sm:top-4
+            sm:right-4
+
+            w-9
+            h-9
+            sm:w-10
+            sm:h-10
+
             rounded-full
             bg-[#D9DCB1]
+
             flex
             items-center
             justify-center
+
             hover:opacity-90
             transition
           "
         >
           <X
-            size={22}
+            size={20}
             className="text-[#14382D]"
             strokeWidth={2.5}
           />
@@ -55,11 +68,12 @@ export default function BrochurePopup() {
         <h2
           className="
             text-[#D9DCB1]
-            text-[24px]
+            text-[20px]
+            sm:text-[24px]
             font-bold
             uppercase
             leading-none
-            mb-4
+            mb-3
           "
         >
           ENQUIRE NOW
@@ -68,9 +82,11 @@ export default function BrochurePopup() {
         <p
           className="
             text-white
-            text-[16px]
+            text-[14px]
+            sm:text-[16px]
             leading-[1.45]
-            mb-6
+            mb-5
+            sm:mb-6
             max-w-[380px]
           "
         >
@@ -78,21 +94,30 @@ export default function BrochurePopup() {
         </p>
 
         {/* Form */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {/* Name */}
           <input
             type="text"
             placeholder="Name"
             className="
               w-full
-              h-[56px]
-              rounded-[14px]
+              h-[48px]
+              sm:h-[56px]
+
+              rounded-[12px]
+              sm:rounded-[14px]
+
               border
               border-[#D9DCB1]
+
               bg-transparent
+
               px-4
+
               text-white
-              text-[16px]
+              text-[15px]
+              sm:text-[16px]
+
               placeholder:text-white/60
               outline-none
             "
@@ -101,17 +126,22 @@ export default function BrochurePopup() {
           {/* Phone */}
           <div
             className="
-              h-[56px]
-              rounded-[14px]
+              h-[48px]
+              sm:h-[56px]
+
+              rounded-[12px]
+              sm:rounded-[14px]
+
               border
               border-[#D9DCB1]
+
               flex
               items-center
               overflow-hidden
             "
           >
             <div className="flex items-center gap-1 px-4">
-              <span className="text-[28px]">🇮🇳</span>
+              <span className="text-[22px] sm:text-[28px]">🇮🇳</span>
 
               <ChevronDown
                 size={14}
@@ -126,8 +156,11 @@ export default function BrochurePopup() {
                 flex-1
                 bg-transparent
                 outline-none
+
                 text-white
-                text-[16px]
+                text-[15px]
+                sm:text-[16px]
+
                 placeholder:text-white/60
                 pr-4
               "
@@ -140,14 +173,23 @@ export default function BrochurePopup() {
             placeholder="Email"
             className="
               w-full
-              h-[56px]
-              rounded-[14px]
+              h-[48px]
+              sm:h-[56px]
+
+              rounded-[12px]
+              sm:rounded-[14px]
+
               border
               border-[#D9DCB1]
+
               bg-transparent
+
               px-4
+
               text-white
-              text-[16px]
+              text-[15px]
+              sm:text-[16px]
+
               placeholder:text-white/60
               outline-none
             "
@@ -159,14 +201,23 @@ export default function BrochurePopup() {
             placeholder="Comments"
             className="
               w-full
-              h-[56px]
-              rounded-[14px]
+              h-[48px]
+              sm:h-[56px]
+
+              rounded-[12px]
+              sm:rounded-[14px]
+
               border
               border-[#D9DCB1]
+
               bg-transparent
+
               px-4
+
               text-white
-              text-[16px]
+              text-[15px]
+              sm:text-[16px]
+
               placeholder:text-white/60
               outline-none
             "
@@ -176,14 +227,26 @@ export default function BrochurePopup() {
           <button
             className="
               w-full
-              h-[62px]
-              rounded-[14px]
+
+              h-[54px]
+              sm:h-[62px]
+
+              rounded-[12px]
+              sm:rounded-[14px]
+
               bg-[#D9DCB1]
+
               text-[#14382D]
-              text-[22px]
+
+              text-[18px]
+              sm:text-[22px]
+
               font-bold
               uppercase
-              mt-2
+
+              mt-1
+              sm:mt-2
+
               hover:opacity-95
               transition
             "

@@ -12,6 +12,7 @@ import Developer from "../components/sections/Developer";
 import Enquiry from "../components/sections/Enquiry";
 import Footer from "../components/sections/Footer";
 import WhyBluepearl from "../components/sections/WhyBluepearl.js";
+import FloatingContactButton from "../components/utils/FloatingContactButton.jsx";
 
 export default function Landing() {
   return (
@@ -20,6 +21,9 @@ export default function Landing() {
       className="relative bg-forest text-sage min-h-screen overflow-hidden"
     >
       <Navbar />
+
+      <FloatingContactButton />
+
       <Hero />
       <InvestmentCase />
       <Location />

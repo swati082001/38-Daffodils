@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "38 Daffodils",
+  "name": "38 Daffodils — Pre-Leased Studio Apartments by Bluepearl",
+  "description": "Garden of Gains. Pre-leased studio apartments with guaranteed monthly rental at 38 Daffodils, Pune by Bluepearl.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +19,9 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait",
+  "theme_color": "#0c2a1e",
+  "background_color": "#0c2a1e"
 }
